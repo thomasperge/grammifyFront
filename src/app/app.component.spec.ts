@@ -27,6 +27,3 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.content span')?.textContent).toContain('GrammifyFront app is running!');
   });
 });
-
-[12, 2, -8, 1] -12, -2,  8,  -1
-[-12, 52, -5, 15]

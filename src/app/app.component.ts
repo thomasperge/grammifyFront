@@ -11,25 +11,7 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent implements OnInit {
   title = 'GrammifyFront';
 
-  constructor(private router: Router) { }
-
   ngOnInit(): void {
     initFlowbite();
-  }
-
-  redirectToTranslatePage() {
-    this.router.navigate(['/translator']);
-  }
-
-  redirectToReformulatePage() {
-    this.router.navigate(['/reformulate']);
-  }
-
-  redirectToSpellCheckerPage() {
-    this.router.navigate(['/spell-checker']);
-  }
-
-  isTranslateRouteActive(): boolean {
-    return this.router.url === '/translator';
   }
 }

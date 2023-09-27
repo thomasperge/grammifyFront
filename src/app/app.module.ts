@@ -8,6 +8,9 @@ import { OutputComponent } from './output/output.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TranslateLangComponent } from './translate-lang/translate-lang.component';
+import { OfficeComponent } from './office/office.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { TranslateLangComponent } from './translate-lang/translate-lang.componen
     OutputComponent,
     FooterComponent,
     NavbarComponent,
-    TranslateLangComponent
+    TranslateLangComponent,
+    OfficeComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

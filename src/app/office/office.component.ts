@@ -24,4 +24,12 @@ export class OfficeComponent {
   isTranslateRouteActive(): boolean {
     return this.router.url === '/translator';
   }
+
+  isReformulateRouteActive(): boolean {
+    return this.router.url === '/reformulate';
+  }
+
+  isSpellCheckerRouteActive(): boolean {
+    return this.router.url === '/spell-checker';
+  }
 }

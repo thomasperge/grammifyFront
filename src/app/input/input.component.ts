@@ -10,6 +10,6 @@ export class InputComponent {
   constructor(private router: Router) { }
   
   isTranslateRouteActive(): boolean {
-    return this.router.url === '/translator';
+    return this.router.url.startsWith('/translator');
   }
 }

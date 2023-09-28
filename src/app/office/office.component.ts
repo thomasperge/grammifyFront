@@ -21,10 +21,6 @@ export class OfficeComponent {
     this.router.navigate(['/spell-checker']);
   }
 
-  isTranslateRouteActive(): boolean {
-    return this.router.url === '/translator';
-  }
-
   isReformulateRouteActive(): boolean {
     return this.router.url === '/reformulate';
   }

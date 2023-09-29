@@ -8,30 +8,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class TranslateLangComponent {
-  allIdButton = ["fr", "en", "sp"];
+  activeButton: String | null = null;
+
   constructor(private router: Router, private route: ActivatedRoute) { }
-
-  setButtonHighlight(language: string) {
-    for(let i = 0; i < this.allIdButton.length; i++) {
-      const buttonId = this.allIdButton[i];
-      
-      if (buttonId === language) {
-        document.getElementById(buttonId)?.classList.remove("border-gray-200")
-        document.getElementById(buttonId)?.classList.add("border-blue-500")
-      } else {
-        document.getElementById(buttonId)?.classList.remove("border-blue-500")
-        document.getElementById(buttonId)?.classList.add("border-gray-200")
-      }
-    }
-  }
-
-  redirectToTranslatePage(language: string) {
-    this.router.navigate(['/translator'], { queryParams: { lang: language } });
-    this.setButtonHighlight(language)
-  }
 
   ngOnInit() {
     const urlLang = this.route.snapshot.queryParamMap.get('lang');
     urlLang !== null ? this.setButtonHighlight(urlLang) : null;
+  }
+
+  setButtonHighlight(language: String) {
+    this.activeButton = language;
+  }  
+
+  redirectToTranslatePage(language: String) {
+    this.router.navigate(['/translator'], { queryParams: { lang: language } });
+    this.setButtonHighlight(language)
   }
 }

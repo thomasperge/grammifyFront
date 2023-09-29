@@ -1,13 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-office',
   templateUrl: './office.component.html',
   styleUrls: ['./office.component.scss']
 })
-export class OfficeComponent {
-  constructor(private router: Router) { }
+export class OfficeComponent implements OnInit {
+  activeButton: String | null = null;
+
+  constructor(private router: Router, private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.url.subscribe(urlSegments => {
+      const urlSegment = urlSegments[0].path;
+      this.setHighlightButton(urlSegment);
+    });
+  }
 
   redirectToTranslatePage() {
     this.router.navigate(['/translator']);
@@ -21,11 +30,7 @@ export class OfficeComponent {
     this.router.navigate(['/spell-checker']);
   }
 
-  isReformulateRouteActive(): boolean {
-    return this.router.url === '/reformulate';
-  }
-
-  isSpellCheckerRouteActive(): boolean {
-    return this.router.url === '/spell-checker';
+  setHighlightButton(idRoute: string) {
+    this.activeButton = idRoute;
   }
 }

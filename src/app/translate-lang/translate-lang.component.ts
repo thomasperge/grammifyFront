@@ -16,6 +16,7 @@ export class TranslateLangComponent {
 
     for(let i = 0; i < this.allIdButton.length; i++) {
       const buttonId = this.allIdButton[i];
+      
       if (buttonId === language) {
         document.getElementById(buttonId)?.classList.remove("border-gray-200")
         document.getElementById(buttonId)?.classList.add("border-blue-500")
@@ -24,6 +25,5 @@ export class TranslateLangComponent {
         document.getElementById(buttonId)?.classList.add("border-gray-200")
       }
     }
-}
-
+  }
 }

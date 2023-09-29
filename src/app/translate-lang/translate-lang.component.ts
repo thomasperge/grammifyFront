@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-translate-lang',
@@ -9,11 +9,9 @@ import { Router } from '@angular/router';
 
 export class TranslateLangComponent {
   allIdButton = ["fr", "en", "sp"];
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
-  redirectToTranslatePage(language: string) {
-    this.router.navigate(['/translator'], { queryParams: { lang: language } });
-
+  setButtonHighlight(language: string) {
     for(let i = 0; i < this.allIdButton.length; i++) {
       const buttonId = this.allIdButton[i];
       
@@ -25,5 +23,15 @@ export class TranslateLangComponent {
         document.getElementById(buttonId)?.classList.add("border-gray-200")
       }
     }
+  }
+
+  redirectToTranslatePage(language: string) {
+    this.router.navigate(['/translator'], { queryParams: { lang: language } });
+    this.setButtonHighlight(language)
+  }
+
+  ngOnInit() {
+    const urlLang = this.route.snapshot.queryParamMap.get('lang');
+    urlLang !== null ? this.setButtonHighlight(urlLang) : null;
   }
 }

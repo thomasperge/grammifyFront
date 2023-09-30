@@ -11,13 +11,11 @@ export class TextareaInputService {
   constructor() {}
 
   setText(text: string) {
-    console.log('Setting text:', text);
     this.textSubject.next(text);
   }
   
   getText(): string {
     const text = this.textSubject.getValue();
-    console.log('Getting text:', text);
     return text;
   }
 }

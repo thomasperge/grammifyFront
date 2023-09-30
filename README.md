@@ -1,7 +1,6 @@
 # GrammifyFront
 # A faire :
 
-- Change tools garder le texte dans le textarea
 - Ajouter langue
 - Ajouter un compteur de caracter
 - Ajouter un compteur de unique usages

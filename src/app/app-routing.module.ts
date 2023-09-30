@@ -5,8 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: OfficeComponent },
+  { path: '', redirectTo: 'translator', pathMatch: 'full' },
   { path: 'translator', component: OfficeComponent },
   { path: 'reformulate', component: OfficeComponent },
   { path: 'spell-checker', component: OfficeComponent },

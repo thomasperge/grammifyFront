@@ -13,21 +13,32 @@ export class InputComponent {
     text: '',
   });
 
+  letterCounter = '0/1000';
+
   constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService,) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
+    this.updateLetterCounter();
     return this.activedRouteService.isActiveRoute('/translator');
   }
 
   isReformulateRouteActive(): boolean {
     this.initText()
+    this.updateLetterCounter();
     return this.activedRouteService.isActiveRoute('/reformulate');
   }
 
   isSpellCheckerRouteActive(): boolean {
     this.initText()
+    this.updateLetterCounter();
     return this.activedRouteService.isActiveRoute('/spell-checker');
+  }
+
+  updateLetterCounter() {
+    const textValue = this.textForm.value.text;
+    const currentLength = textValue ? textValue.length : 0;
+    this.letterCounter = `${currentLength}/1000`;
   }
 
   ngOnInit(): void {

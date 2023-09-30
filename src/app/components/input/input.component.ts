@@ -31,7 +31,6 @@ export class InputComponent {
   }
 
   ngOnInit(): void {
-    // Récupérer le texte initial (s'il existe)
     const initialText = this.textService.getText();
     if (initialText) {
       this.textForm.patchValue({ text: initialText });
@@ -41,14 +40,8 @@ export class InputComponent {
   initText() {
     const textValue = this.textForm.value.text;
   
-    // Vérifiez si textValue n'est pas null ou undefined avant de l'utiliser
     if (textValue !== null && textValue !== undefined) {
-      // Stocker le texte dans le service
       this.textService.setText(textValue);
-      console.log('Text submitted:', textValue);
-    } else {
-      // Utilisez une valeur par défaut ou gérez le cas où textValue est null ou undefined
-      console.log('Text submitted: (No text)');
     }
   }
 

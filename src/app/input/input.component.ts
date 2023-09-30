@@ -12,4 +12,12 @@ export class InputComponent {
   isTranslateRouteActive(): boolean {
     return this.router.url.startsWith('/translator');
   }
+
+  isReformulateRouteActive(): boolean {
+    return this.router.url.startsWith('/reformulate');
+  }
+
+  isSpellCheckerRouteActive(): boolean {
+    return this.router.url.startsWith('/spell-checker');
+  }
 }

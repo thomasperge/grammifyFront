@@ -13,7 +13,7 @@
       </button>
 
       <!-- Number of caracter per input -->
-      <div>{{ letterCounter }}</div>
+      <div [ngClass]="{'redLetterCount': letterCount >= 950}">{{ letterCounter }}</div>
     </div>
   </div>
 </form>

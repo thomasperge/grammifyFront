@@ -14,6 +14,7 @@ export class InputComponent {
   });
 
   letterCounter = '0/1000';
+  letterCount: number = 0;
 
   constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService,) { }
   
@@ -44,6 +45,7 @@ export class InputComponent {
       this.textForm.patchValue({ text: textValue });
     }
 
+    this.letterCount = currentLength;
     this.letterCounter = `${currentLength}/1000`;
   }
 

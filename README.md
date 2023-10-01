@@ -3,6 +3,8 @@
 
 - Ajouter langue
 - Adding usages (when backend finished)
+- Checker event submit (ca submit dans les dropdowns)
+- Translate : Faire dropdown button
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.

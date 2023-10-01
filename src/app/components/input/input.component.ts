@@ -36,8 +36,14 @@ export class InputComponent {
   }
 
   updateLetterCounter() {
-    const textValue = this.textForm.value.text;
+    let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
+    // Condition counter 1000 letters
+    if (currentLength >= 1000 && textValue != null) {
+      textValue = textValue.substring(0, 1000);
+      this.textForm.patchValue({ text: textValue });
+    }
+
     this.letterCounter = `${currentLength}/1000`;
   }
 

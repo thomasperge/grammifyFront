@@ -5,6 +5,7 @@
 - Adding usages (when backend finished)
 - Checker event submit (ca submit dans les dropdowns)
 - Translate : Faire dropdown button
+- (Ajouter reformulate => parametre avec emoji ou pas 🤷‍♀️)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.

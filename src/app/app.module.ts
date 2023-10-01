@@ -11,7 +11,7 @@ import { TranslateLangComponent } from './components/translate-lang/translate-la
 import { OfficeComponent } from './components/office/office.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { ReformulateSettingsComponent } from './reformulate-settings/reformulate-settings.component';
+import { ReformulateSettingsComponent } from './components/reformulate-settings/reformulate-settings.component';
 
 @NgModule({
   declarations: [

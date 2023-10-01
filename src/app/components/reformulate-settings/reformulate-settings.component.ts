@@ -68,11 +68,22 @@ export class ReformulateSettingsComponent {
     });
   }
 
+  updateQueryParam(paramName: string, paramValue: any) {
+    const queryParams = { ...this.activatedRoute.snapshot.queryParams };
+    queryParams[paramName] = paramValue;
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams,
+      queryParamsHandling: 'merge',
+      replaceUrl: true
+    });
+  }
+
   setLevelLevel(level: number) {
     this.levelSelected = level;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {
-      this.router.navigate(['/reformulate'], { queryParams: { lvl: level } });
+      this.updateQueryParam('lvl', level);
       this.toggleDropdownLevel();
     }
   }
@@ -81,7 +92,7 @@ export class ReformulateSettingsComponent {
     this.lengthSelected = length;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {
-      this.router.navigate(['/reformulate'], { queryParams: { length: length } });
+      this.updateQueryParam('length', length);
       this.toggleDropdownLength();
     }
   }

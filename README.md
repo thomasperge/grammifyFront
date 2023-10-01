@@ -1,8 +1,8 @@
 # GrammifyFront
 # A faire :
 
-- Ajouter un compteur de unique usages
 - Ajouter langue
+- Adding usages (when backend finished)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.

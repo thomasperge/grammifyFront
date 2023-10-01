@@ -80,6 +80,7 @@ export class ReformulateSettingsComponent {
   }
 
   setLevelLevel(level: number) {
+    console.log("HERRRRRRRRRRRRRRRE");
     this.levelSelected = level;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {
@@ -89,6 +90,7 @@ export class ReformulateSettingsComponent {
   }
 
   setLengthLevel(length: string) {
+    console.log("HERRRRRRRRRRRRRRRE");
     this.lengthSelected = length;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {

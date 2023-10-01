@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouteActiveService } from 'src/app/services/route-active.service';
 
 @Component({
   selector: 'app-output',
@@ -7,9 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./output.component.scss']
 })
 export class OutputComponent {
-  constructor(private router: Router) { }
+  constructor(private activedRouteService: RouteActiveService) { }
   
   isTranslateRouteActive(): boolean {
-    return this.router.url.startsWith('/translator');
+    return this.activedRouteService.isActiveRoute('/translator');
+  }
+
+  isReformulateRouteActive(): boolean {
+    return this.activedRouteService.isActiveRoute('/reformulate');
+  }
+
+  isSpellCheckerRouteActive(): boolean {
+    return this.activedRouteService.isActiveRoute('/spell-checker');
   }
 }

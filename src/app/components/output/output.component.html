@@ -9,6 +9,10 @@
       <div *ngIf="isTranslateRouteActive()">
         <app-translate-lang></app-translate-lang>
       </div>
+      <!-- Display Reformulate Settings Component -->
+      <div *ngIf="isReformulateRouteActive()">
+        <app-reformulate-settings></app-reformulate-settings>
+      </div>
       <!-- Button remake -->
       <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 hover:bg-red-800 outputButton">Remake</button>
     </div>

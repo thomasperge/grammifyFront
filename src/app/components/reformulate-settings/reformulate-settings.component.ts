@@ -8,39 +8,81 @@ import { RouteActiveService } from '../../services/route-active.service';
   styleUrls: ['./reformulate-settings.component.scss']
 })
 export class ReformulateSettingsComponent {
-  isDropdownOpen: boolean = false;
+  isDropdownOpenLevel: boolean = false;
+  isDropdownOpenLength: boolean = false;
   levelSelected: number = 1;
+  lengthSelected: string | null = 'same';
 
   constructor(private router: Router, private routeActiveService: RouteActiveService, private activatedRoute: ActivatedRoute) {}
 
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  toggleDropdownLevel() {
+    this.isDropdownOpenLevel = !this.isDropdownOpenLevel;
+    // If dropdown length are true : passed to false
+    if (this.isDropdownOpenLength) {
+      this.isDropdownOpenLength = !this.isDropdownOpenLength;
+    }
+  }
+
+  toggleDropdownLength() {
+    this.isDropdownOpenLength = !this.isDropdownOpenLength;
+    // If dropdown level are true : passed to false
+    if (this.isDropdownOpenLevel) {
+      this.isDropdownOpenLevel = !this.isDropdownOpenLevel;
+    }
   }
 
   ngOnInit() {
     this.activatedRoute.queryParamMap.subscribe(params => {
+      // Level query
       if (params.has('lvl')) {
-        if (Number(params.get('lvl')) > 3) {
+        const lvlValue = Number(params.get('lvl'));
+        if (lvlValue > 3) {
           this.levelSelected = 3;
-          this.router.navigate([], {relativeTo: this.activatedRoute, queryParams: { lvl: 3 }, queryParamsHandling: 'merge', replaceUrl: true});
-        } else if (Number(params.get('lvl')) < 1) {
+        } else if (lvlValue < 1) {
           this.levelSelected = 0;
-          this.router.navigate([], {relativeTo: this.activatedRoute, queryParams: { lvl: 1 }, queryParamsHandling: 'merge', replaceUrl: true});
         } else {
-          this.levelSelected = Number(params.get('lvl'));
+          this.levelSelected = lvlValue;
         }
       } else {
-        this.router.navigate(['/reformulate'], { queryParams: { lvl: 1 } });
+        this.levelSelected = 1;
       }
+
+      // Length query
+      if (params.has('length')) {
+        const lengthValue = params.get('length');
+        if (lengthValue !== 'short' && lengthValue !== 'same' && lengthValue !== 'long') {
+          this.lengthSelected = 'same';
+        } else {
+          this.lengthSelected = lengthValue;
+        }
+      } else {
+        this.lengthSelected = 'same';
+      }
+
+      // Naviguer avec les deux paramètres
+      this.router.navigate(['/reformulate'], {
+        queryParams: { lvl: this.levelSelected, length: this.lengthSelected },
+        queryParamsHandling: 'merge',
+        replaceUrl: true
+      });
     });
   }
 
-  setLevel(level: number) {
+  setLevelLevel(level: number) {
     this.levelSelected = level;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {
       this.router.navigate(['/reformulate'], { queryParams: { lvl: level } });
-      this.toggleDropdown();
+      this.toggleDropdownLevel();
+    }
+  }
+
+  setLengthLevel(length: string) {
+    this.lengthSelected = length;
+
+    if (this.routeActiveService.isActiveRoute('/reformulate')) {
+      this.router.navigate(['/reformulate'], { queryParams: { length: length } });
+      this.toggleDropdownLength();
     }
   }
 }

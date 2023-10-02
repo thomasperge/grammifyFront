@@ -52,6 +52,7 @@ export class InputComponent {
 
   ngOnInit(): void {
     const initialText = this.textService.getText();
+    
     if (initialText) {
       this.textForm.patchValue({ text: initialText });
     }

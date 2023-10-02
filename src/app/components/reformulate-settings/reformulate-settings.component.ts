@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RouteActiveService } from '../../services/route-active.service';
+import { UpdateParamsService } from 'src/app/services/update-params.service';
 
 @Component({
   selector: 'app-reformulate-settings',
@@ -13,7 +14,7 @@ export class ReformulateSettingsComponent {
   levelSelected: number = 1;
   lengthSelected: string | null = 'same';
 
-  constructor(private router: Router, private routeActiveService: RouteActiveService, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private routeActiveService: RouteActiveService, private activatedRoute: ActivatedRoute, private updateParamsService: UpdateParamsService) {}
 
   toggleDropdownLevel() {
     this.isDropdownOpenLevel = !this.isDropdownOpenLevel;
@@ -68,33 +69,20 @@ export class ReformulateSettingsComponent {
     });
   }
 
-  updateQueryParam(paramName: string, paramValue: any) {
-    const queryParams = { ...this.activatedRoute.snapshot.queryParams };
-    queryParams[paramName] = paramValue;
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams,
-      queryParamsHandling: 'merge',
-      replaceUrl: true
-    });
-  }
-
   setLevelLevel(level: number) {
-    console.log("HERRRRRRRRRRRRRRRE");
     this.levelSelected = level;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {
-      this.updateQueryParam('lvl', level);
+      this.updateParamsService.updateQueryParam('lvl', level);
       this.toggleDropdownLevel();
     }
   }
 
   setLengthLevel(length: string) {
-    console.log("HERRRRRRRRRRRRRRRE");
     this.lengthSelected = length;
 
     if (this.routeActiveService.isActiveRoute('/reformulate')) {
-      this.updateQueryParam('length', length);
+      this.updateParamsService.updateQueryParam('length', length);
       this.toggleDropdownLength();
     }
   }

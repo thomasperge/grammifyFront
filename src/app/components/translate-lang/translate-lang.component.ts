@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateParamsService } from 'src/app/services/update-params.service';
 
 @Component({
   selector: 'app-translate-lang',
@@ -10,11 +11,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TranslateLangComponent {
   activeButton: String | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private updateParamsService: UpdateParamsService) { }
 
   ngOnInit() {
     const urlLang = this.route.snapshot.queryParamMap.get('lang');
     urlLang !== null ? this.setButtonHighlight(urlLang) : null;
+    this.setDefaultLang()
+  }
+
+  setDefaultLang() {
+    const defaultLang: any = 'fr';
+    this.updateParamsService.updateQueryParam('lang', defaultLang);
+    this.setButtonHighlight(defaultLang)
   }
 
   setButtonHighlight(language: String) {

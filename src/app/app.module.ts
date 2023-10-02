@@ -14,6 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ReformulateSettingsComponent } from './components/reformulate-settings/reformulate-settings.component';
 import { CapitalizeFirstLetterPipe } from './pipe/capitalize-first-letter.pipe';
 import { UsagesComponent } from './components/usages/usages.component';
+import { FlagLangComponent } from './components/flag-lang/flag-lang.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { UsagesComponent } from './components/usages/usages.component';
     ReformulateSettingsComponent,
     CapitalizeFirstLetterPipe,
     UsagesComponent,
+    FlagLangComponent,
   ],
   imports: [
     BrowserModule,

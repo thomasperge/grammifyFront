@@ -4,6 +4,7 @@
 - Ajouter langue
 - Adding usages 65/65 (when backend finished)
 - (Ajouter reformulate => parametre avec emoji ou pas 🤷‍♀️)
+- Bouton pour echnger les inputs
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.

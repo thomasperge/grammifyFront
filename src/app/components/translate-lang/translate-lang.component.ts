@@ -10,8 +10,13 @@ import { UpdateParamsService } from 'src/app/services/update-params.service';
 
 export class TranslateLangComponent {
   activeButton: String | null = null;
+  isDropdownOpenLang: any = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private updateParamsService: UpdateParamsService) { }
+  
+  toggleDropdownLang() {
+    this.isDropdownOpenLang = !this.isDropdownOpenLang;
+  }
 
   ngOnInit() {
     const urlLang = this.route.snapshot.queryParamMap.get('lang');
@@ -32,5 +37,9 @@ export class TranslateLangComponent {
   redirectToTranslatePage(language: String) {
     this.router.navigate(['/translator'], { queryParams: { lang: language } });
     this.setButtonHighlight(language)
+  }
+
+  setLang() {
+    this.toggleDropdownLang();
   }
 }

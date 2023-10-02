@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateParamsService } from 'src/app/services/update-params.service';
+import { DisplayFlagService } from 'src/app/services/display-flag.service';
 
 @Component({
   selector: 'app-translate-lang',
@@ -11,8 +12,9 @@ import { UpdateParamsService } from 'src/app/services/update-params.service';
 export class TranslateLangComponent {
   activeButton: String | null = null;
   isDropdownOpenLang: any = false;
+  displayFlagDropDown: any = null;
 
-  constructor(private router: Router, private route: ActivatedRoute, private updateParamsService: UpdateParamsService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private updateParamsService: UpdateParamsService, private displayFlagService: DisplayFlagService) { }
   
   toggleDropdownLang() {
     this.isDropdownOpenLang = !this.isDropdownOpenLang;
@@ -36,10 +38,15 @@ export class TranslateLangComponent {
 
   redirectToTranslatePage(language: String) {
     this.router.navigate(['/translator'], { queryParams: { lang: language } });
-    this.setButtonHighlight(language)
+    this.setButtonHighlight(language);
   }
 
-  setLang() {
+  setDropdownLang(language: string) {
+    this.router.navigate(['/translator'], { queryParams: { lang: language } });
     this.toggleDropdownLang();
+    this.setButtonHighlight("dd");
+
+    this.displayFlagDropDown = this.displayFlagService.getUrlFlag(language);
+    console.log(this.displayFlagDropDown);
   }
 }

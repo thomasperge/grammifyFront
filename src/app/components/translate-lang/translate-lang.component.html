@@ -24,6 +24,12 @@
 
     <!-- Dropdown button - Translate -->
     <button (click)="toggleDropdownLang()" [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'dd' }" id="dd" type="button" class="inline-flex items-center px-0 py-1 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+      <div *ngIf = "displayFlagDropDown != null">
+        <div class="centerFlag w-4">
+          <img src="{{ displayFlagDropDown }}" alt="" />
+        </div>
+      </div>
+
       <div class="w-4 h-2 mr-3">
         <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -36,16 +42,16 @@
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButtonLength">
           <li>
             <div class="grid grid-cols-3 w-[400px]">
-              <app-flag-lang (click)="redirectToTranslatePage('de')" [countryName]="'Deutsh'" [flagUrl]="'./../../../assets/flag/flag-de-svgrepo-com.svg'"></app-flag-lang>
-              <app-flag-lang (click)="redirectToTranslatePage('cn')" [countryName]="'Chinese'" [flagUrl]="'./../../../assets/flag/flag-cn-svgrepo-com.svg'"></app-flag-lang>
-              <app-flag-lang (click)="redirectToTranslatePage('sa')" [countryName]="'Arabe'" [flagUrl]="'./../../../assets/flag/flag-sa-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('de')" [countryName]="'Deutsh'" [flagUrl]="'./../../../assets/flag/flag-de-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('cn')" [countryName]="'Chinese'" [flagUrl]="'./../../../assets/flag/flag-cn-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('sa')" [countryName]="'Arabe'" [flagUrl]="'./../../../assets/flag/flag-sa-svgrepo-com.svg'"></app-flag-lang>
             
-              <app-flag-lang (click)="redirectToTranslatePage('pt')" [countryName]="'Portuges'" [flagUrl]="'./../../../assets/flag/flag-pt-svgrepo-com.svg'"></app-flag-lang>
-              <app-flag-lang (click)="redirectToTranslatePage('jp')" [countryName]="'Japanese'" [flagUrl]="'./../../../assets/flag/flag-jp-svgrepo-com.svg'"></app-flag-lang>
-              <app-flag-lang (click)="redirectToTranslatePage('it')" [countryName]="'Italia'" [flagUrl]="'./../../../assets/flag/flag-it-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('pt')" [countryName]="'Portuges'" [flagUrl]="'./../../../assets/flag/flag-pt-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('jp')" [countryName]="'Japanese'" [flagUrl]="'./../../../assets/flag/flag-jp-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('it')" [countryName]="'Italia'" [flagUrl]="'./../../../assets/flag/flag-it-svgrepo-com.svg'"></app-flag-lang>
             
-              <app-flag-lang (click)="redirectToTranslatePage('nl')" [countryName]="'PayBas'" [flagUrl]="'./../../../assets/flag/flag-nl-svgrepo-com.svg'"></app-flag-lang>
-              <app-flag-lang (click)="redirectToTranslatePage('kr')" [countryName]="'Corean'" [flagUrl]="'./../../../assets/flag/flag-kr-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('nl')" [countryName]="'PayBas'" [flagUrl]="'./../../../assets/flag/flag-nl-svgrepo-com.svg'"></app-flag-lang>
+              <app-flag-lang (click)="setDropdownLang('kr')" [countryName]="'Corean'" [flagUrl]="'./../../../assets/flag/flag-kr-svgrepo-com.svg'"></app-flag-lang>
             </div>
           </li>
         </ul>

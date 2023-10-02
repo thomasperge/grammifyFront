@@ -35,7 +35,13 @@
       <div [class.hidden]="!isDropdownOpenLang" class="absolute top-full right-0 mt-1 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButtonLength">
           <li>
-            <div (click)="setLang()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Concise Text</div>
+            <!-- France Countrie -->
+            <div (click)="setLang()" class="flex px-4 py-2 font-medium hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <div class="centerFlag w-4 mr-2">
+                <img src="./../../assets/flag/flag-wf-svgrepo-com.svg" alt="" />
+              </div>
+              France
+            </div>
           </li>
           <li>
             <div (click)="setLang()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Text of Equal Size</div>

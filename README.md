@@ -3,7 +3,6 @@
 
 - Ajouter langue
 - Adding usages 65/65 (when backend finished)
-- Translate : Faire dropdown button
 - (Ajouter reformulate => parametre avec emoji ou pas 🤷‍♀️)
 
 

@@ -47,6 +47,5 @@ export class TranslateLangComponent {
     this.setButtonHighlight("dd");
 
     this.displayFlagDropDown = this.displayFlagService.getUrlFlag(language);
-    console.log(this.displayFlagDropDown);
   }
 }

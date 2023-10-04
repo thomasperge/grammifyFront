@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsagesService } from 'src/app/services/usages.service';
 
 @Component({
   selector: 'app-usages',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./usages.component.scss']
 })
 export class UsagesComponent {
+  usages: number;
 
+  constructor(private usagesService: UsagesService) {
+    this.usages = this.usagesService.getUsages();
+  }
 }

@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RouteActiveService } from 'src/app/services/route-active.service';
 import { TextareaInputService } from 'src/app/services/textarea-input.service';
+import { UsagesService } from 'src/app/services/usages.service';
 
 @Component({
   selector: 'app-input',
@@ -16,8 +17,9 @@ export class InputComponent {
 
   letterCounter = '0/1000';
   letterCount: number = 0;
+  currentUsages: number = 0;
 
-  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute) { }
+  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
@@ -74,7 +76,7 @@ export class InputComponent {
       // Translate
       this.activatedRoute.queryParamMap.subscribe(params => {
         if (params.has('lang') && currentLength >= 1) {
-          console.log("Contains 1 params !", params.get('lang'));
+          this.usagesService.addUsages()
         } else {
           // Error (display toast ?)
           console.log("Translate => Not 1 params or no text...");
@@ -84,7 +86,7 @@ export class InputComponent {
       // Reformulate
       this.activatedRoute.queryParamMap.subscribe(params => {
         if (params.has('lvl') && params.has('length') && currentLength >= 1) {
-          console.log("Contains 2 params !", params.get('lvl'), params.get('length'));
+          this.usagesService.addUsages()
         } else {
           // Error (display toast ?)
           console.log("Reformulate => Not 2 params or no text...");
@@ -93,7 +95,7 @@ export class InputComponent {
     } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
       // Spell Checker
       if (currentLength >= 1) {
-        console.log("Nice !");
+        this.usagesService.addUsages()
       } else {
         // Error (display toast ?)
         console.log("Spell-checker => No text...");

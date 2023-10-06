@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouteActiveService } from 'src/app/services/route-active.service';
+import { TextareaOutputService } from 'src/app/services/textarea-output.service';
 
 @Component({
   selector: 'app-output',
@@ -7,7 +8,16 @@ import { RouteActiveService } from 'src/app/services/route-active.service';
   styleUrls: ['./output.component.scss']
 })
 export class OutputComponent {
-  constructor(private activedRouteService: RouteActiveService) { }
+  receivedData: string = "";
+
+  constructor(private activedRouteService: RouteActiveService, private outputService: TextareaOutputService) {
+    this.receivedData = this.outputService.getOutputData();
+  }
+
+  // updateOutputTextArea() {
+  //   this.receivedData = this.outputService.getOutputData();
+  // }
+  
   
   isTranslateRouteActive(): boolean {
     return this.activedRouteService.isActiveRoute('/translator');

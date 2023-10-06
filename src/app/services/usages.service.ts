@@ -7,7 +7,6 @@ export class UsagesService {
   currentUsages: number = 0;
   
   addUsages() {
-    console.log("HERE !");
     this.currentUsages++
   }
 

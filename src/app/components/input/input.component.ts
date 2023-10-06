@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouteActiveService } from 'src/app/services/route-active.service';
 import { TextareaInputService } from 'src/app/services/textarea-input.service';
 import { UsagesService } from 'src/app/services/usages.service';
+import { TranslateService } from 'src/app/services/translate.service';
+import { TextareaOutputService } from 'src/app/services/textarea-output.service';
 
 @Component({
   selector: 'app-input',
@@ -18,8 +20,11 @@ export class InputComponent {
   letterCounter = '0/1000';
   letterCount: number = 0;
   currentUsages: number = 0;
+  outPutData: String = "";
+  responseGpt: any;
+  outputContent: any;
 
-  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService) { }
+  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
@@ -68,7 +73,7 @@ export class InputComponent {
     }
   }
 
-  onSubmitInput() {
+  onSubmitInput(query: String) {
     let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
 
@@ -77,9 +82,15 @@ export class InputComponent {
       this.activatedRoute.queryParamMap.subscribe(params => {
         if (params.has('lang') && currentLength >= 1) {
           this.usagesService.addUsages()
-        } else {
-          // Error (display toast ?)
-          console.log("Translate => Not 1 params or no text...");
+          // Subscribe to Observer to get response
+          this.translateService.getTranslateOutput(query).subscribe(response => {
+            this.responseGpt = response
+            this.outputContent = this.responseGpt.choices[0].message.content;
+            console.log(this.outputContent);
+            
+            // this.sendOutputData()
+            // this.outputComponent.updateOutputTextArea()
+          });
         }
       })
     } else if (this.activedRouteService.isActiveRoute('/reformulate')) {
@@ -87,21 +98,19 @@ export class InputComponent {
       this.activatedRoute.queryParamMap.subscribe(params => {
         if (params.has('lvl') && params.has('length') && currentLength >= 1) {
           this.usagesService.addUsages()
-        } else {
-          // Error (display toast ?)
-          console.log("Reformulate => Not 2 params or no text...");
         }
       })
     } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
       // Spell Checker
       if (currentLength >= 1) {
         this.usagesService.addUsages()
-      } else {
-        // Error (display toast ?)
-        console.log("Spell-checker => No text...");
       }
     }
 
     this.initText()
+  }
+
+  sendOutputData() {
+    this.textareaOutputService.setOutPutData(this.outputContent)
   }
 }

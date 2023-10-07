@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouteActiveService } from 'src/app/services/route-active.service';
 import { TextareaOutputService } from 'src/app/services/textarea-output.service';
 
@@ -7,18 +7,19 @@ import { TextareaOutputService } from 'src/app/services/textarea-output.service'
   templateUrl: './output.component.html',
   styleUrls: ['./output.component.scss']
 })
-export class OutputComponent {
+export class OutputComponent implements OnInit {
   receivedData: string = "";
 
-  constructor(private activedRouteService: RouteActiveService, private outputService: TextareaOutputService) {
-    this.receivedData = this.outputService.getOutputData();
+  constructor(private activedRouteService: RouteActiveService, private outputService: TextareaOutputService) {}
+
+  ngOnInit(): void {
+    this.outputService.outputDataSubject.subscribe(data => {
+      this.receivedData = data;
+      
+      console.log(this.receivedData);
+    });
   }
 
-  // updateOutputTextArea() {
-  //   this.receivedData = this.outputService.getOutputData();
-  // }
-  
-  
   isTranslateRouteActive(): boolean {
     return this.activedRouteService.isActiveRoute('/translator');
   }

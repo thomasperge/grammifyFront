@@ -88,8 +88,7 @@ export class InputComponent {
             this.outputContent = this.responseGpt.choices[0].message.content;
             console.log(this.outputContent);
             
-            // this.sendOutputData()
-            // this.outputComponent.updateOutputTextArea()
+            this.sendOutputData()
           });
         }
       })

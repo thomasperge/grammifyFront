@@ -117,7 +117,7 @@ export class InputComponent {
           this.responseGpt = response
           this.outputContent = this.responseGpt.choices[0].message.content;
           
-          this.sendOutputData()
+          this.sendOutputData();
         });
       }
     }

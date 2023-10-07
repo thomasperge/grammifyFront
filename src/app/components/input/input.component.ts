@@ -7,6 +7,7 @@ import { UsagesService } from 'src/app/services/usages.service';
 import { TranslateService } from 'src/app/services/translate.service';
 import { TextareaOutputService } from 'src/app/services/textarea-output.service';
 import { ReformulateService } from 'src/app/services/reformulate.service';
+import { SpellCheckerService } from 'src/app/services/spell-checker.service';
 
 @Component({
   selector: 'app-input',
@@ -25,7 +26,7 @@ export class InputComponent {
   responseGpt: any;
   outputContent: any;
 
-  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService) { }
+  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService, private spellCheckerService: SpellCheckerService) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
@@ -110,6 +111,14 @@ export class InputComponent {
       // Spell Checker
       if (currentLength >= 1) {
         this.usagesService.addUsages()
+
+        // Subscribe to Observer to get response
+        this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
+          this.responseGpt = response
+          this.outputContent = this.responseGpt.choices[0].message.content;
+          
+          this.sendOutputData()
+        });
       }
     }
 

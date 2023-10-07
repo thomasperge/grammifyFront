@@ -6,6 +6,7 @@ import { TextareaInputService } from 'src/app/services/textarea-input.service';
 import { UsagesService } from 'src/app/services/usages.service';
 import { TranslateService } from 'src/app/services/translate.service';
 import { TextareaOutputService } from 'src/app/services/textarea-output.service';
+import { ReformulateService } from 'src/app/services/reformulate.service';
 
 @Component({
   selector: 'app-input',
@@ -24,7 +25,7 @@ export class InputComponent {
   responseGpt: any;
   outputContent: any;
 
-  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService) { }
+  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
@@ -86,7 +87,6 @@ export class InputComponent {
           this.translateService.getTranslateOutput(query).subscribe(response => {
             this.responseGpt = response
             this.outputContent = this.responseGpt.choices[0].message.content;
-            console.log(this.outputContent);
             
             this.sendOutputData()
           });
@@ -96,7 +96,14 @@ export class InputComponent {
       // Reformulate
       this.activatedRoute.queryParamMap.subscribe(params => {
         if (params.has('lvl') && params.has('length') && currentLength >= 1) {
-          this.usagesService.addUsages()
+          this.usagesService.addUsages();
+          // Subscribe to Observer to get response
+          this.reformulateService.getReformulateOutput(query).subscribe(response => {
+            this.responseGpt = response
+            this.outputContent = this.responseGpt.choices[0].message.content;
+            
+            this.sendOutputData()
+          });
         }
       })
     } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {

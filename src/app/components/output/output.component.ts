@@ -15,8 +15,6 @@ export class OutputComponent implements OnInit {
   ngOnInit(): void {
     this.outputService.outputDataSubject.subscribe(data => {
       this.receivedData = data;
-      
-      console.log(this.receivedData);
     });
   }
 

@@ -104,11 +104,13 @@ export class InputComponent {
         if (params.has('lvl') && params.has('length') && currentLength >= 1) {
           this.usagesService.addUsages();
 
+          this.spinnerOutputService.showLoader()
           // Subscribe to Observer to get response
           this.reformulateService.getReformulateOutput(query).subscribe(response => {
             this.responseGpt = response
             this.outputContent = this.responseGpt.choices[0].message.content;
             
+            this.spinnerOutputService.hideLoader()
             this.sendOutputData()
           });
         }
@@ -118,11 +120,13 @@ export class InputComponent {
       if (currentLength >= 1) {
         this.usagesService.addUsages()
 
+        this.spinnerOutputService.showLoader()
         // Subscribe to Observer to get response
         this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
           this.responseGpt = response
           this.outputContent = this.responseGpt.choices[0].message.content;
           
+          this.spinnerOutputService.hideLoader()
           this.sendOutputData();
         });
       }

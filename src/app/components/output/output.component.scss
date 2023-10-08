@@ -1,5 +1,16 @@
 .emptyComponent {
   width: 100%;
   height: 2.25rem;
+}
+
+.textAreaOutput {
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: red;
 }

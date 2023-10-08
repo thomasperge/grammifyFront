@@ -20,7 +20,7 @@ export class InputComponent {
     text: '',
   });
 
-  letterCounter = '0/1000';
+  letterCounter = '0/350';
   letterCount: number = 0;
   currentUsages: number = 0;
   outPutData: String = "";
@@ -51,14 +51,14 @@ export class InputComponent {
   updateLetterCounter() {
     let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
-    // Condition counter 1000 letters
-    if (currentLength >= 1000 && textValue != null) {
-      textValue = textValue.substring(0, 1000);
+    // Condition counter 350 letters
+    if (currentLength >= 350 && textValue != null) {
+      textValue = textValue.substring(0, 350);
       this.textForm.patchValue({ text: textValue });
     }
 
     this.letterCount = currentLength;
-    this.letterCounter = `${currentLength}/1000`;
+    this.letterCounter = `${currentLength}/350`;
   }
 
   ngOnInit(): void {

@@ -33,10 +33,27 @@
 
 .getStartedButton {
   font-size: 1.15rem;
+  margin: 0 0 3.5rem 0;
 }
 
 // === Assets ===
 .assetsTranslateContainer {
+  display: flex;
   width: 100%;
   height: fit-content;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 7rem 1rem 7rem;
+}
+
+.translateTitle {
+  display: flex;
+  padding: .5vh 0 1vh 2vh;
+  font-size: 3vh;
+  font-weight: 600;
+}
+
+.imgTranslate {
+  width: 88%;
 }

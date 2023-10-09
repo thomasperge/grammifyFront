@@ -1,0 +1,36 @@
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// === Title Container ===
+.titleContainer {
+  flex-direction: column;
+}
+
+.container-about {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 2vh 0;
+}
+
+.description {
+  font-size: 1.1rem;
+}
+
+.getStartedButtonContainer {
+  width: 100%;
+  height: fit-content;
+  padding: 3rem 0 0 0;
+}
+
+.getStartedButton {
+  font-size: 1.15rem;
+}

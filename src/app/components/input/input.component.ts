@@ -77,6 +77,10 @@ export class InputComponent {
     }
   }
 
+  checkUsagesLimit(): boolean {
+    return this.usagesService.getUsages() < 65;
+  }
+
   onSubmitInput(query: String) {
     let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
@@ -84,7 +88,7 @@ export class InputComponent {
     if (this.activedRouteService.isActiveRoute('/translator')) {
       // Translate
       this.activatedRoute.queryParamMap.subscribe(params => {
-        if (params.has('lang') && currentLength >= 1) {
+        if (params.has('lang') && currentLength >= 1 && this.checkUsagesLimit()) {
           this.usagesService.addUsages()
           
           this.spinnerOutputService.showLoader()
@@ -101,7 +105,7 @@ export class InputComponent {
     } else if (this.activedRouteService.isActiveRoute('/reformulate')) {
       // Reformulate
       this.activatedRoute.queryParamMap.subscribe(params => {
-        if (params.has('lvl') && params.has('length') && currentLength >= 1) {
+        if (params.has('lvl') && params.has('length') && currentLength >= 1 && this.checkUsagesLimit()) {
           this.usagesService.addUsages();
 
           this.spinnerOutputService.showLoader()
@@ -117,7 +121,7 @@ export class InputComponent {
       })
     } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
       // Spell Checker
-      if (currentLength >= 1) {
+      if (currentLength >= 1 && this.checkUsagesLimit()) {
         this.usagesService.addUsages()
 
         this.spinnerOutputService.showLoader()

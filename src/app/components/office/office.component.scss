@@ -27,6 +27,11 @@ app-input, app-output {
   justify-content: flex-start;
 }
 
+.emptyContainer {
+  width: 100%;
+  height: 25vh;
+}
+
 @media screen and (max-width: 920px) {
   .areaFlexBox {
     flex-direction: column;

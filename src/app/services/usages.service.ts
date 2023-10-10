@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UsagesService {
-  currentUsages: number = 0;
+  currentUsages: number = 65;
   
   addUsages() {
     this.currentUsages++

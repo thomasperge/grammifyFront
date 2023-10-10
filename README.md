@@ -3,8 +3,8 @@
 
 - Adding usages 65/65 (when backend finished)
 - Bouton pour echanger les inputs
-- Regler probleme de quand clique sur un bouton de parametree, envoie la requete aux back
-- RESPONSIVE
+- Regler probleme de quand clique sur un bouton de parametre, envoie la requete aux back
+- Regler dernier soucis responsive (surtout le translate-lang)
 
 - Atout : 
 - Pas besoin de carte de credit

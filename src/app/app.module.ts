@@ -18,7 +18,6 @@ import { FlagLangComponent } from './components/flag-lang/flag-lang.component';
 import { CapitalizeFirstLetterPipe } from './pipe/capitalize-first-letter.pipe';
 import { AboutComponent } from './components/about/about.component';
 import { PricingComponent } from './components/pricing/pricing.component';
-import { TwitterComponent } from './components/twitter/twitter.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ClipboardComponent } from './components/clipboard/clipboard.component';
 
@@ -39,7 +38,6 @@ import { ClipboardComponent } from './components/clipboard/clipboard.component';
     CapitalizeFirstLetterPipe,
     AboutComponent,
     PricingComponent,
-    TwitterComponent,
     ClipboardComponent,
   ],
   imports: [

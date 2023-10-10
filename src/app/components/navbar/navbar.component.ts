@@ -40,6 +40,6 @@ export class NavbarComponent {
   }
 
   redirectToTwitterPage() {
-    this.router.navigate(['/twitter']);
+    window.open('https://twitter.com/home', '_blank');
   }
 }

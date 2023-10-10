@@ -19,6 +19,8 @@ import { CapitalizeFirstLetterPipe } from './pipe/capitalize-first-letter.pipe';
 import { AboutComponent } from './components/about/about.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { TwitterComponent } from './components/twitter/twitter.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ClipboardComponent } from './components/clipboard/clipboard.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +40,14 @@ import { TwitterComponent } from './components/twitter/twitter.component';
     AboutComponent,
     PricingComponent,
     TwitterComponent,
+    ClipboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

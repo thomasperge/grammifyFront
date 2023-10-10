@@ -1,3 +1,15 @@
+.reformulateSettingsContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reformulateSettings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dropdownLevel {
   width: 13vh;
 }

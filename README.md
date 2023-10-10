@@ -11,8 +11,6 @@
 - Pas besoin de carte de credit
 - Pas besoin de ce crée un compte
 
-
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 By Thomasperge (https://github.com/thomasperge)
 

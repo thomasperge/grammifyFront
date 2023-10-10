@@ -38,3 +38,62 @@ textarea {
 .inputButton, .outputButton {
   font-size: 2vh;
 }
+
+@media screen and (max-width: 610px) {
+  app-clipboard {
+    display: none;
+  }
+
+  .imgTranslate {
+    width: 1px;
+    border-radius: 250px;
+  }
+}
+
+@media screen and (max-width: 522px) {
+  app-input {
+    width: 96%;
+  }
+
+  .textAreaInput, .textAreaOutput {
+    font-size: 1rem;
+  }
+
+  app-output {
+    width: 96%;
+  }
+
+  app-usages {
+    width: 100%;
+    padding: 0;
+  }
+
+  .translate-lang-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .langButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
+    border-radius: 0px;
+  }
+
+  .dropdownOpen {
+    right: -132px;
+  }
+
+  .countrieArea {
+    width: fit-content;
+  }
+
+  .gridLangButton {
+    width: 280px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

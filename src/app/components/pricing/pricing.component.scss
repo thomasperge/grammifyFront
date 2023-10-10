@@ -4,3 +4,15 @@
   height: auto;
   gap: 1.5rem;
 }
+
+@media screen and (max-width: 837px) {
+  .pricing-container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 522px) {
+  .pricing-container {
+    padding: 0 15%;
+  }
+}

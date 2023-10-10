@@ -16,6 +16,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0 0 2rem 0;
+  text-align: center;
 }
 
 .technoDescription {
@@ -43,6 +44,7 @@
 .titleOpenai {
   font-size: 1.15rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .logoOwner {
@@ -51,6 +53,15 @@
   transform: translateX(-20px);
   border: rgb(225, 225, 225) 2.5px solid;
   padding: 3px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.logoOpenAI {
+  width: 57px;
+  height: 57px;
+  border: rgb(225, 225, 225) 2.5px solid;
+  padding: 7px;
   background-color: white;
   border-radius: 50%;
 }

@@ -20,10 +20,12 @@
   font-size: 2.5rem;
   font-weight: bold;
   padding: 2vh 0 1vh 0;
+  text-align: center;
 }
 
 .description {
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .getStartedButtonContainer {
@@ -79,4 +81,39 @@
   width: 70%;
   border-radius: 11px;
   margin: 0 1.5rem;
+}
+
+@media screen and (max-width: 610px) {
+  .assetsTranslateContainer {
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+  
+  .assetsWith2Container {
+    margin: 0 0 2rem 0;
+    padding: 0;
+  }
+
+  .imgTranslate {
+    width: 70%;
+  }
+
+  .imgWith2Container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 522px) {
+  .assetsTranslateContainer, .assetsWith2Container {
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .imgTranslate {
+    width: 80%;
+  }
+
+  .imgWith2Container {
+    width: 80%;
+  }
 }

@@ -1,0 +1,55 @@
+.technoContainer {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-top: rgb(200, 200, 255) 2.2px solid;
+  border-bottom: rgb(200, 200, 255) 2.2px solid;
+  margin: 1.2rem 0 0 0;
+  padding: 4rem 2rem;
+  background-color: #f2edff;
+}
+
+.technoTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 0 2rem 0;
+}
+
+.technoDescription {
+  width: 67%;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.containerOpenai {
+  width: 67%;
+  font-weight: 400;
+  text-align: center;  
+}
+
+.logoOpenAI {
+  background-color: white;
+  border-radius: 50%;
+  border: rgb(236, 236, 236) 2px solid;
+  padding: 4px;
+}
+
+.titleOpenai {
+  font-weight: 700;
+}
+
+.logoOwner {
+  width: 57px;
+  height: 57px;
+  transform: translateX(-20px);
+  border: rgb(236, 236, 236) 2px solid;
+  padding: 3px;
+  background-color: white;
+  border-radius: 50%;
+}

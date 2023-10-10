@@ -2,8 +2,15 @@
 # A faire :
 
 - Adding usages 65/65 (when backend finished)
-- Bouton pour echnger les inputs
+- Bouton pour echanger les inputs
 - Output ajouter copy/paste
+- Regler probleme de quand clique sur un bouton de parametree, envoie la requete aux back
+- RESPONSIVE
+
+- Atout : 
+- Pas besoin de carte de credit
+- Pas besoin de ce crée un compte
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.

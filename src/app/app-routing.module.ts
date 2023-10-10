@@ -4,6 +4,8 @@ import { OfficeComponent } from './components/office/office.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AboutComponent } from './components/about/about.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { TwitterComponent } from './components/twitter/twitter.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'translator', pathMatch: 'full' },
@@ -14,8 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'pricing', component: AboutComponent },
-  { path: 'twitter', component: AboutComponent },
+  { path: 'pricing', component: PricingComponent },
+  { path: 'twitter', component: TwitterComponent },
 ];
 
 @NgModule({

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard';
+import { TextareaOutputService } from 'src/app/services/textarea-output.service';
 
 @Component({
   selector: 'app-clipboard',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./clipboard.component.scss']
 })
 export class ClipboardComponent {
-  
+  constructor(private clipboardService: ClipboardService, private textareaOutputService: TextareaOutputService) {}
+
+  copyToClipboard() {
+    const textToCopy = this.textareaOutputService.getOutputData()
+    this.clipboardService.copy(textToCopy);
+  }
 }

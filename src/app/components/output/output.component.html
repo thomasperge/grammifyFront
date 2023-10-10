@@ -41,7 +41,9 @@
       </div>
       <!-- Display Spell Checker empty Component -->
       <div *ngIf="isSpellCheckerRouteActive()" style="width: 100%;">
-        <div class="emptyComponent"></div>
+        <div class="emptyComponent">
+          <app-clipboard></app-clipboard>
+        </div>
       </div>
     </div>
   </div>

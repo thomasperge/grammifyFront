@@ -1,3 +1,15 @@
 .clipboardContainer {
   cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  background-color: rgb(236, 226, 255);
+}
+
+.clipboardContainer:active > g > path {
+  stroke: #5f0070;
+  background-color: rgb(221, 203, 255);
+}
+
+.clipboardContainer:active {
+  background-color: rgb(240, 231, 255);
 }

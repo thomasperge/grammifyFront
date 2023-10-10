@@ -1,12 +1,12 @@
 # GrammifyFront
 # A faire :
 
-- Adding usages 65/65 (when backend finished)
-- Bouton pour echanger les inputs
-- Regler probleme de quand clique sur un bouton de parametre, envoie la requete aux back
+- (Bouton pour intervetir les inputs / output)
+- ⚠️ Ajouter Backend Login / Signup + FrontEnd + Usages Back/Front
+- ⚠️ Regler probleme de quand clique sur un bouton de parametre (lang, level, text length), envoie la requete aux back
 - Regler dernier soucis responsive (surtout le translate-lang)
 
-- Atout : 
+- Atout (ProductHunt): 
 - Pas besoin de carte de credit
 - Pas besoin de ce crée un compte
 

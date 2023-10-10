@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  activePageClass: any = 'gray';
+
+  constructor(private router: Router) { }
 
   isHomePage() {
     return this.router.url.startsWith('/translator') || this.router.url.startsWith('/reformulate') || this.router.url.startsWith('/spell-checker')

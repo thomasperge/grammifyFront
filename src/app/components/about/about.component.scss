@@ -109,11 +109,19 @@
     flex-direction: column;
   }
 
+  .assets2ContainerSpellChecker {
+    flex-direction:column-reverse;
+  }
+
   .imgTranslate {
-    width: 80%;
+    width: 90%;
   }
 
   .imgWith2Container {
-    width: 80%;
+    width: 90%;
+  }
+
+  .description {
+    padding: 0 .8rem;
   }
 }

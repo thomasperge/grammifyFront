@@ -92,8 +92,9 @@ export class InputComponent {
           this.usagesService.addUsages()
           
           this.spinnerOutputService.showLoader()
-          // Subscribe to Observer to get response
+            // Subscribe to Observer to get response
           this.translateService.getTranslateOutput(query).subscribe(response => {
+            
             this.responseGpt = response
             this.outputContent = this.responseGpt.choices[0].message.content;
             

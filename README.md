@@ -3,7 +3,6 @@
 
 - (Bouton pour intervetir les inputs / output)
 - ⚠️ Ajouter Backend Login / Signup + FrontEnd + Usages Back/Front
-- ⚠️ Regler probleme de quand clique sur un bouton de parametre (lang, level, text length), envoie la requete aux back
 - Regler dernier soucis responsive (surtout le translate-lang)
 
 - Atout (ProductHunt): 

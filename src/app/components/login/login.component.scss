@@ -1,13 +1,84 @@
-.loginContainer {
-  margin: 5vh 0 25vh 0;
+// Container
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexboxColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.returnToHome {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: start;
+  padding: 1.6rem 0 0 2.5rem;
+  cursor: pointer;
+}
+
+.loginLogo {
+  width: 58.5px;
+  height: 58.5px;
+  transform: translateX(-20px);
+  border: rgb(225, 225, 225) 2.5px solid;
+  padding: 5px 3px 3px 3px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.containerLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+  padding: 0;
+}
+
+.padLockContainer {
+  border-radius: 50%;
+  padding: 7px;
+  background-color: #bdbdbd;
+}
+
+.titlelogin {
+  font-size: 2.1rem;
+  font-weight: 600;
+  padding: 0 0.6rem;
+  text-align: center;
+}
+
+.descriptionlogin {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.loginFormContainer {
+  width: 100%;
+  margin: 0 0 25vh 0;
+}
+
+.spanTitle {
+  background-image: linear-gradient(204deg, rgba(0,215,255,1) 0%, rgba(33,0,255,1) 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text
 }
 
 a {
   cursor: pointer;
 }
 
+// Media screen
 @media screen and (max-width: 767px) {
-  .loginContainer {
+  .loginFormContainer {
     margin: 5vh 0 10vh 0;
   }
 }

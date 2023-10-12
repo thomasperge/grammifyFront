@@ -16,9 +16,8 @@ export class AppComponent implements OnInit {
     // Check all changement route
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const currentRoute = this.router.url;
         // Undisplay navbar if /login or /signup route
-        if (currentRoute == "/login" || currentRoute == "/signup") {
+        if (this.router.url.startsWith('/login') || this.router.url.startsWith('/signup')) {
           this.isDisplayNavBar = false
         }
       }

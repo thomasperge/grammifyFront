@@ -9,6 +9,7 @@ import { TextareaOutputService } from 'src/app/services/textarea-output.service'
 import { ReformulateService } from 'src/app/services/reformulate.service';
 import { SpellCheckerService } from 'src/app/services/spell-checker.service';
 import { SpinnerOutputService } from 'src/app/services/spinner-output.service';
+import { UnknownUserService } from 'src/app/services/unknown-user.service';
 
 @Component({
   selector: 'app-input',
@@ -28,7 +29,7 @@ export class InputComponent {
   outputContent: any;
   isLoading: any = false;
 
-  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService, private spellCheckerService: SpellCheckerService, private spinnerOutputService: SpinnerOutputService) { }
+  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService, private spellCheckerService: SpellCheckerService, private spinnerOutputService: SpinnerOutputService, private unknownUserService: UnknownUserService) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
@@ -84,56 +85,66 @@ export class InputComponent {
   onSubmitInput(query: String) {
     let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
-
-    if (this.activedRouteService.isActiveRoute('/translator')) {
-      // Translate
-      this.activatedRoute.queryParamMap.subscribe(params => {
-        if (params.has('lang') && currentLength >= 1 && this.checkUsagesLimit()) {
-          this.usagesService.addUsages()
-          
-          this.spinnerOutputService.showLoader()
+    const userid = localStorage.getItem('userId');
+    
+    if (userid) {
+      if (this.activedRouteService.isActiveRoute('/translator')) {
+        // Translate
+        this.activatedRoute.queryParamMap.subscribe(params => {
+            if (params.has('lang') && currentLength >= 1 && this.checkUsagesLimit()) {
+            
+            // Set usages
+            this.usagesService.addUsages()
+            this.unknownUserService.addUsageUnknownUser(userid)
+            
+            this.spinnerOutputService.showLoader()
             // Subscribe to Observer to get response
-          this.translateService.getTranslateOutput(query).subscribe(response => {
-            
-            this.responseGpt = response
-            this.outputContent = this.responseGpt.choices[0].message.content;
-            
-            this.spinnerOutputService.hideLoader()
-            this.sendOutputData()
-          });
-        }
-      })
-    } else if (this.activedRouteService.isActiveRoute('/reformulate')) {
-      // Reformulate
-      this.activatedRoute.queryParamMap.subscribe(params => {
-        if (params.has('lvl') && params.has('length') && currentLength >= 1 && this.checkUsagesLimit()) {
-          this.usagesService.addUsages();
+            this.translateService.getTranslateOutput(query).subscribe(response => {
+              
+              this.responseGpt = response
+              this.outputContent = this.responseGpt.choices[0].message.content;
+              
+              this.spinnerOutputService.hideLoader()
+              this.sendOutputData()
+            });
+          }
+        })
+      } else if (this.activedRouteService.isActiveRoute('/reformulate')) {
+        // Reformulate
+        this.activatedRoute.queryParamMap.subscribe(params => {
+          if (params.has('lvl') && params.has('length') && currentLength >= 1 && this.checkUsagesLimit()) {
+            // Set usages
+            this.usagesService.addUsages()
+            this.unknownUserService.addUsageUnknownUser(userid)
+
+            this.spinnerOutputService.showLoader()
+            // Subscribe to Observer to get response
+            this.reformulateService.getReformulateOutput(query).subscribe(response => {
+              this.responseGpt = response
+              this.outputContent = this.responseGpt.choices[0].message.content;
+              
+              this.spinnerOutputService.hideLoader()
+              this.sendOutputData()
+            });
+          }
+        })
+      } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
+        // Spell Checker
+        if (currentLength >= 1 && this.checkUsagesLimit()) {
+          // Set usages
+          this.usagesService.addUsages()
+          this.unknownUserService.addUsageUnknownUser(userid)
 
           this.spinnerOutputService.showLoader()
           // Subscribe to Observer to get response
-          this.reformulateService.getReformulateOutput(query).subscribe(response => {
+          this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
             this.responseGpt = response
             this.outputContent = this.responseGpt.choices[0].message.content;
             
             this.spinnerOutputService.hideLoader()
-            this.sendOutputData()
+            this.sendOutputData();
           });
         }
-      })
-    } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
-      // Spell Checker
-      if (currentLength >= 1 && this.checkUsagesLimit()) {
-        this.usagesService.addUsages()
-
-        this.spinnerOutputService.showLoader()
-        // Subscribe to Observer to get response
-        this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
-          this.responseGpt = response
-          this.outputContent = this.responseGpt.choices[0].message.content;
-          
-          this.spinnerOutputService.hideLoader()
-          this.sendOutputData();
-        });
       }
     }
 

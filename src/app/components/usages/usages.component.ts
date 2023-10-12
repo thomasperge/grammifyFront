@@ -7,9 +7,11 @@ import { UsagesService } from 'src/app/services/usages.service';
   styleUrls: ['./usages.component.scss']
 })
 export class UsagesComponent {
-  usages: number;
+  usages: number | undefined;
 
   constructor(private usagesService: UsagesService) {
-    this.usages = this.usagesService.getUsages();
+    this.usagesService.currentUsages$.subscribe(usages => {
+      this.usages = usages;
+    });
   }
 }

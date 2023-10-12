@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
         // Undisplay navbar if /login or /signup route
         if (this.router.url.startsWith('/login') || this.router.url.startsWith('/signup')) {
           this.isDisplayNavBar = false
+        } else {
+          this.isDisplayNavBar = true
         }
       }
     });

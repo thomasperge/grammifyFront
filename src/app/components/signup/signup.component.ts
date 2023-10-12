@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   envUrl: any;
+  displayErrorMessage: String | undefined;
 
   constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
     this.loadConfig()
   }
   
-  textForm = this.formBuilder.group({
+  signupForm = this.formBuilder.group({
     email: '',
     password: ''
   });
@@ -36,8 +37,8 @@ export class SignupComponent {
   onSubmit() {
     // Get form data
     const formData = {
-      email: this.textForm.value.email,
-      password: this.textForm.value.password
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password
     }
 
     const headers = new HttpHeaders({
@@ -46,9 +47,16 @@ export class SignupComponent {
 
     const uri = this.envUrl + "/users/signup"
     
-    this.http.post(uri, formData, { headers })
+    this.http.post<any>(uri, formData, { headers, observe: 'response' })
       .subscribe(response => {
-        console.log('===================> Réponse du serveur :', response);
+
+        if (response.status === 200) {
+          this.router.navigate(['/home']);
+        } else {
+          this.displayErrorMessage = "*Email already in use"
+        }
+      }, error => {
+          this.displayErrorMessage = "*Email already in use"
       });
   }
 }

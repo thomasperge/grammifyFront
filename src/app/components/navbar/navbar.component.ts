@@ -39,6 +39,10 @@ export class NavbarComponent {
     this.router.navigate(['/pricing']);
   }
 
+  redirectToSignupPage() {
+    this.router.navigate(['/login']);
+  }
+
   redirectToTwitterPage() {
     window.open('https://twitter.com/home', '_blank');
   }

@@ -1,0 +1,9 @@
+.signupContainer {
+  margin: 5vh 0 25vh 0;
+}
+
+@media screen and (max-width: 767px) {
+  .signupContainer {
+    margin: 5vh 0 10vh 0;
+  }
+}

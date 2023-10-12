@@ -1,0 +1,13 @@
+.loginContainer {
+  margin: 5vh 0 25vh 0;
+}
+
+a {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .loginContainer {
+    margin: 5vh 0 10vh 0;
+  }
+}

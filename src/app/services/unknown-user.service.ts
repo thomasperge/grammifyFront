@@ -5,8 +5,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UnknownUserService {
+  unknownUserid: String = ""
 
   constructor(private http: HttpClient) { }
+
+  setUnknownUserId(newUnknownUserid: String) {
+    this.unknownUserid = newUnknownUserid
+  }
+
+  getUnknownUserId(): String {
+    return this.unknownUserid;
+  }
 
   async createUnknownUser(idUser: String) {
     console.log("Service to creat users");

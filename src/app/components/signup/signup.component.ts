@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UnknownUserService } from 'src/app/services/unknown-user.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ export class SignupComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService) {
     this.loadConfig()
   }
   
@@ -35,10 +36,14 @@ export class SignupComponent {
   }
 
   onSubmit() {
+    // Get unknown id
+    const userId = localStorage.getItem('userId');
+
     // Get form data
     const formData = {
       email: this.signupForm.value.email,
-      password: this.signupForm.value.password
+      password: this.signupForm.value.password,
+      unknown_id: this.unknownUserService.getUnknownUserId()
     }
 
     const headers = new HttpHeaders({

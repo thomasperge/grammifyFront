@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
     // Check if user have localstorage userId
     if (userId) {
       this.protectedUserId = userId
+      this.unknownUserService.setUnknownUserId(this.protectedUserId)
+
       // Get usages from id in local storage
       let nbUsages = await this.unknownUserService.getUsageUnknownUser(this.protectedUserId)
 
@@ -57,6 +59,9 @@ export class AppComponent implements OnInit {
       // Set id user in localStorage
       const newUserId = this.generateUuid();
       localStorage.setItem('userId', newUserId);
+
+      this.protectedUserId = newUserId
+      this.unknownUserService.setUnknownUserId(newUserId)
       
       // Set id user in DB
       this.unknownUserService.createUnknownUser(newUserId)

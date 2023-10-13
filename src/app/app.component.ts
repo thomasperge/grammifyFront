@@ -39,16 +39,20 @@ export class AppComponent implements OnInit {
     // Init Unknwown User
     const userId = localStorage.getItem('userId');
 
-    // Init current usages
+    // Check if user have localstorage userId
     if (userId) {
-      // get usages
+      // Get usages from id in local storage
       let nbUsages = await this.unknownUserService.getUsageUnknownUser(userId)
-      this.usagesService.setUsages(nbUsages)
-    }
 
-    if (!userId) {
-      console.log("User not found");
-      
+      // User change id in the localStorage (response -1 = Bad request)
+      if (nbUsages == -1) {
+        this.router.navigate(['/login'])
+      } else {
+        // user have correct id = set current usage from DB
+        this.usagesService.setUsages(nbUsages)
+      }
+    } else {
+
       // Set id user in localStorage
       const newUserId = this.generateUuid();
       localStorage.setItem('userId', newUserId);

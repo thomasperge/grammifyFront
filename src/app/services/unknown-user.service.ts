@@ -79,11 +79,11 @@ export class UnknownUserService {
           if (response.status === 200) {
             resolve(response.body.currentUsages);
           } else {
-            resolve(0);
+            resolve(-1);
           }
         },
         error => {
-          resolve(0);
+          resolve(-1);
         }
       );
     });

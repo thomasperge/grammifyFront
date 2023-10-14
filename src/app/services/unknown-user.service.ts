@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class UnknownUserService {
   unknownUserid: String = ""
+  currentUsages: any = 0
+  maxUsages: any = 0
 
   constructor(private http: HttpClient) { }
 
@@ -15,6 +17,14 @@ export class UnknownUserService {
 
   getUnknownUserId(): any {
     return this.unknownUserid;
+  }
+
+  getUnknownUserCurrentUsage() {
+    return this.currentUsages
+  }
+
+  getUnknownUserMaxUsage() {
+    return this.maxUsages
   }
 
   async createUnknownUser(idUser: String) {
@@ -43,6 +53,36 @@ export class UnknownUserService {
       });
   }
 
+  async getUnknownUserData(idUser: String) {
+    return new Promise<number>(async (resolve, reject) => {
+      const config = await import('../../../env.json');
+      const url = config.url_backend + "/unknown-user/get-data";
+  
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+  
+      const data: any = {
+        id: idUser
+      };
+  
+      this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
+        response => {
+          if (response.status === 200) {
+            this.currentUsages = response.body.user.currentUsages
+            this.maxUsages = response.body.user.maxUsages
+            resolve(response.body.user);
+          } else {
+            resolve(-1);
+          }
+        },
+        error => {
+          resolve(-1);
+        }
+      );
+    });
+  }
+
   async addUsageUnknownUser(idUser: string) {
     const config = await import('../../../env.json');
     const url = config.url_backend + "/unknown-user/add-usage"
@@ -66,33 +106,5 @@ export class UnknownUserService {
       }, error => {
           console.log("Error : Cannot added usage !");
       });
-  }
-
-  async getUsageUnknownUser(idUser: String): Promise<number> {
-    return new Promise<number>(async (resolve, reject) => {
-      const config = await import('../../../env.json');
-      const url = config.url_backend + "/unknown-user/get-usage";
-  
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json'
-      });
-  
-      const data: any = {
-        id: idUser
-      };
-  
-      this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
-        response => {
-          if (response.status === 200) {
-            resolve(response.body.currentUsages);
-          } else {
-            resolve(-1);
-          }
-        },
-        error => {
-          resolve(-1);
-        }
-      );
-    });
   }
 }

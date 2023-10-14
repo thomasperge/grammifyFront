@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UsersService {
   userid: String = ""
+  email: String = ""
+  currentUsage: any = 0
+  maxUsages: any = 0
 
   constructor(private unknownUserService: UnknownUserService, private http: HttpClient) { }
 
@@ -16,6 +19,18 @@ export class UsersService {
 
   getUserId(): any {
     return this.userid;
+  }
+
+  getUserEmail() {
+    return this.email
+  }
+
+  getCurrentUsages() {
+    return this.currentUsage
+  }
+
+  getMaxUsages() {
+    return this.maxUsages
   }
 
   setUserIdLocalStorage(response: any) {
@@ -28,10 +43,10 @@ export class UsersService {
     console.log(response.user._id, response.user.unknown_id);
   }
 
-  async getUserUsages(userId: String) {
-    return new Promise<number>(async (resolve, reject) => {
+  async getUserData(userId: any) {
+    return new Promise<any>(async (resolve, reject) => {
       const config = await import('../../../env.json');
-      const url = config.url_backend + "/users/get-usage";
+      const url = config.url_backend + "/users/get-data";
   
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -44,8 +59,12 @@ export class UsersService {
       this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
         response => {
           if (response.status === 200) {
-            console.log("USER UASGES : ", response.body.currentUsages);
-            resolve(response.body.currentUsages);
+            console.log("USER UASGES : ", response.body.user.currentUsages);
+            this.email = response.body.user.email
+            this.currentUsage = response.body.user.currentUsages
+            this.maxUsages = response.body.user.maxUsages
+            console.log(response.body.user);
+            resolve(response.body.user);
           } else {
             resolve(-1);
           }

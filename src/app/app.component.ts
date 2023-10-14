@@ -36,17 +36,18 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     initFlowbite();
-
-    // === Init Unknwown User ===
+    
     const unknownUserId = localStorage.getItem('unknownId');
     const userId = localStorage.getItem('userId')
-
-    // = Check if userId localStorage exist =
+    
     if (userId) {
+      // Load all user data
+      await this.usersService.getUserData(userId)
+
       this.usersService.setUserId(userId)
       this.unknownUserService.setUnknownUserId(unknownUserId)
       
-      let nbUsages = await this.usersService.getUserUsages(userId)
+      let nbUsages = await this.usersService.getCurrentUsages()
 
       if (nbUsages == -1) {
         this.router.navigate(['/login'])
@@ -54,11 +55,12 @@ export class AppComponent implements OnInit {
         this.usagesService.setUsages(nbUsages)
       }
     } else {
-      // = Check if unknownId localstorage exist =
       if (unknownUserId) {
+        // Load all user data
+        await this.unknownUserService.getUnknownUserData(unknownUserId)
+
         this.unknownUserService.setUnknownUserId(unknownUserId)
-  
-        let nbUsages = await this.unknownUserService.getUsageUnknownUser(unknownUserId)
+        let nbUsages = await this.unknownUserService.getUnknownUserCurrentUsage()
   
         if (nbUsages == -1) {
           this.router.navigate(['/login'])

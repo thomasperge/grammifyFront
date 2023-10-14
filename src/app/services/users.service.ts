@@ -59,7 +59,7 @@ export class UsersService {
       this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
         response => {
           if (response.status === 200) {
-          console.log("GETT USER DATA - 200 oké");
+            console.log("GET USER DATA - 200 oké");
 
             this.email = response.body.user.email
             this.currentUsage = response.body.user.currentUsages

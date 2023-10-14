@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   activePageClass: any = 'gray';
+  email: String | undefined = "Get Started";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usersService: UsersService) { }
 
   isHomePage() {
     return this.router.url.startsWith('/translator') || this.router.url.startsWith('/reformulate') || this.router.url.startsWith('/spell-checker')

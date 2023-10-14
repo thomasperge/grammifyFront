@@ -80,7 +80,7 @@ export class InputComponent {
   }
 
   checkUsagesLimit(): boolean {
-    return this.usagesService.getUsages() < 65;
+    return this.usagesService.getUsages() < this.usagesService.getMaxUsages();
   }
 
   onSubmitInput(query: String) {

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import { UsagesService } from 'src/app/services/usages.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService) {
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService, private usagesService: UsagesService) {
     this.loadConfig()
   }
 
@@ -53,6 +54,7 @@ export class LoginComponent {
         
         if (response.status === 200) {
           this.usersService.setUserIdLocalStorage(response.body)
+          this.usagesService.setMaxUsages(response.body.user.maxUsages)
           this.router.navigate(['/home']);
         } else {
           this.displayErrorMessage = "*Incorrect email or password"

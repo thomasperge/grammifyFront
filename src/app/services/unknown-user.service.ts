@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UsagesService } from './usages.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class UnknownUserService {
   currentUsages: any = 0
   maxUsages: any = 0
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usagesService: UsagesService, private router: Router) { }
 
   setUnknownUserId(newUnknownUserid: any) {
     this.unknownUserid = newUnknownUserid
@@ -44,7 +46,11 @@ export class UnknownUserService {
         console.log("Service to creat users : In suscribe");
 
         if (response.status === 200) {
-          console.log("Users Created !");
+          this.currentUsages = response.body.user.currentUsages
+          this.maxUsages = response.body.user.maxUsages
+
+          this.usagesService.setUsages(response.body.user.currentUsages)
+          this.usagesService.setMaxUsages(response.body.user.maxUsages)
         } else {
           console.log("Error : Users not Created !");
         }
@@ -71,12 +77,17 @@ export class UnknownUserService {
           if (response.status === 200) {
             this.currentUsages = response.body.user.currentUsages
             this.maxUsages = response.body.user.maxUsages
+
+            this.usagesService.setUsages(this.currentUsages)
+            this.usagesService.setMaxUsages(this.maxUsages)
             resolve(response.body.user);
           } else {
+            this.router.navigate(['/login'])
             resolve(-1);
           }
         },
         error => {
+          this.router.navigate(['/login'])
           resolve(-1);
         }
       );

@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    console.log('ON INIIIIIIT !');
+    
     initFlowbite();
     
     const unknownUserId = localStorage.getItem('unknownId');
@@ -46,27 +48,12 @@ export class AppComponent implements OnInit {
 
       this.usersService.setUserId(userId)
       this.unknownUserService.setUnknownUserId(unknownUserId)
-      
-      let nbUsages = await this.usersService.getCurrentUsages()
-
-      if (nbUsages == -1) {
-        this.router.navigate(['/login'])
-      } else {
-        this.usagesService.setUsages(nbUsages)
-      }
     } else {
       if (unknownUserId) {
         // Load all user data
         await this.unknownUserService.getUnknownUserData(unknownUserId)
 
         this.unknownUserService.setUnknownUserId(unknownUserId)
-        let nbUsages = await this.unknownUserService.getUnknownUserCurrentUsage()
-  
-        if (nbUsages == -1) {
-          this.router.navigate(['/login'])
-        } else {
-          this.usagesService.setUsages(nbUsages)
-        }
       } else {
         const newUnknownUserId = this.generateUuid();
         localStorage.setItem('unknownId', newUnknownUserId);
@@ -78,14 +65,14 @@ export class AppComponent implements OnInit {
   }
 
   // Set id local storage if user edit the id in localStorage
-  @HostListener('window:beforeunload', ['$event'])
-  onBeforeUnload(event: BeforeUnloadEvent): void {
-    if (localStorage.getItem('userId') != this.usersService.getUserId()) {
-      localStorage.setItem('userId', this.usersService.getUserId());
-    }
+  // @HostListener('window:beforeunload', ['$event'])
+  // onBeforeUnload(event: BeforeUnloadEvent): void {
+  //   if (localStorage.getItem('userId') != this.usersService.getUserId()) {
+  //     localStorage.setItem('userId', this.usersService.getUserId());
+  //   }
 
-    if (localStorage.getItem('unknownId') != this.unknownUserService.getUnknownUserId()) {
-      localStorage.setItem('unknownId', this.unknownUserService.getUnknownUserId());
-    }
-  }  
+  //   if (localStorage.getItem('unknownId') != this.unknownUserService.getUnknownUserId()) {
+  //     localStorage.setItem('unknownId', this.unknownUserService.getUnknownUserId());
+  //   }
+  // }  
 }

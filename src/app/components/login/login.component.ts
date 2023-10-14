@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService) {
     this.loadConfig()
   }
 
@@ -49,8 +50,9 @@ export class LoginComponent {
     
     this.http.post<any>(uri, formData, { headers, observe: 'response' })
       .subscribe(response => {
-
+        
         if (response.status === 200) {
+          this.usersService.setUserIdLocalStorage(response.body)
           this.router.navigate(['/home']);
         } else {
           this.displayErrorMessage = "*Incorrect email or password"

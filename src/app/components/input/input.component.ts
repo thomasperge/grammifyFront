@@ -10,6 +10,7 @@ import { ReformulateService } from 'src/app/services/reformulate.service';
 import { SpellCheckerService } from 'src/app/services/spell-checker.service';
 import { SpinnerOutputService } from 'src/app/services/spinner-output.service';
 import { UnknownUserService } from 'src/app/services/unknown-user.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-input',
@@ -29,7 +30,7 @@ export class InputComponent {
   outputContent: any;
   isLoading: any = false;
 
-  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService, private spellCheckerService: SpellCheckerService, private spinnerOutputService: SpinnerOutputService, private unknownUserService: UnknownUserService) { }
+  constructor(private activedRouteService: RouteActiveService, private formBuilder: FormBuilder, private textService: TextareaInputService, private activatedRoute: ActivatedRoute, private usagesService: UsagesService, private translateService: TranslateService, private textareaOutputService: TextareaOutputService, private reformulateService: ReformulateService, private spellCheckerService: SpellCheckerService, private spinnerOutputService: SpinnerOutputService, private unknownUserService: UnknownUserService, private usersService: UsersService) { }
   
   isTranslateRouteActive(): boolean {
     this.initText()
@@ -85,9 +86,10 @@ export class InputComponent {
   onSubmitInput(query: String) {
     let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
-    const userid = localStorage.getItem('userId');
+    const unknownUserId = this.unknownUserService.getUnknownUserId();
+    const userid = this.usersService.getUserId();
     
-    if (userid) {
+    if (unknownUserId) {
       if (this.activedRouteService.isActiveRoute('/translator')) {
         // Translate
         this.activatedRoute.queryParamMap.subscribe(params => {
@@ -95,7 +97,7 @@ export class InputComponent {
             
             // Set usages
             this.usagesService.addUsages()
-            this.unknownUserService.addUsageUnknownUser(userid)
+            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId)
             
             this.spinnerOutputService.showLoader()
             // Subscribe to Observer to get response
@@ -115,7 +117,7 @@ export class InputComponent {
           if (params.has('lvl') && params.has('length') && currentLength >= 1 && this.checkUsagesLimit()) {
             // Set usages
             this.usagesService.addUsages()
-            this.unknownUserService.addUsageUnknownUser(userid)
+            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId)
 
             this.spinnerOutputService.showLoader()
             // Subscribe to Observer to get response
@@ -133,7 +135,7 @@ export class InputComponent {
         if (currentLength >= 1 && this.checkUsagesLimit()) {
           // Set usages
           this.usagesService.addUsages()
-          this.unknownUserService.addUsageUnknownUser(userid)
+          userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId)
 
           this.spinnerOutputService.showLoader()
           // Subscribe to Observer to get response

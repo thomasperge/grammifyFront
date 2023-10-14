@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { v4 as uuidv4 } from 'uuid';
 import { UnknownUserService } from './services/unknown-user.service';
+import { UsersService } from './services/users.service';
 import { UsagesService } from './services/usages.service';
 
 @Component({
@@ -14,9 +15,8 @@ import { UsagesService } from './services/usages.service';
 export class AppComponent implements OnInit {
   title = 'GrammifyFront';
   isDisplayNavBar = true;
-  protectedUserId = ""
 
-  constructor(private router: Router, private unknownUserService: UnknownUserService, private usagesService: UsagesService) {
+  constructor(private router: Router, private unknownUserService: UnknownUserService, private usagesService: UsagesService, private usersService: UsersService) {
     // Check all changement route
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -37,42 +37,53 @@ export class AppComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     initFlowbite();
 
-    // Init Unknwown User
-    const userId = localStorage.getItem('userId');
+    // === Init Unknwown User ===
+    const unknownUserId = localStorage.getItem('unknownId');
+    const userId = localStorage.getItem('userId')
 
-    // Check if user have localstorage userId
+    // = Check if userId localStorage exist =
     if (userId) {
-      this.protectedUserId = userId
-      this.unknownUserService.setUnknownUserId(this.protectedUserId)
+      this.usersService.setUserId(userId)
+      this.unknownUserService.setUnknownUserId(unknownUserId)
+      
+      let nbUsages = await this.usersService.getUserUsages(userId)
 
-      // Get usages from id in local storage
-      let nbUsages = await this.unknownUserService.getUsageUnknownUser(this.protectedUserId)
-
-      // User change id in the localStorage (response -1 = Bad request)
       if (nbUsages == -1) {
         this.router.navigate(['/login'])
       } else {
-        // user have correct id = set current usage from DB
         this.usagesService.setUsages(nbUsages)
       }
     } else {
-      // Set id user in localStorage
-      const newUserId = this.generateUuid();
-      localStorage.setItem('userId', newUserId);
-
-      this.protectedUserId = newUserId
-      this.unknownUserService.setUnknownUserId(newUserId)
-      
-      // Set id user in DB
-      this.unknownUserService.createUnknownUser(newUserId)
+      // = Check if unknownId localstorage exist =
+      if (unknownUserId) {
+        this.unknownUserService.setUnknownUserId(unknownUserId)
+  
+        let nbUsages = await this.unknownUserService.getUsageUnknownUser(unknownUserId)
+  
+        if (nbUsages == -1) {
+          this.router.navigate(['/login'])
+        } else {
+          this.usagesService.setUsages(nbUsages)
+        }
+      } else {
+        const newUnknownUserId = this.generateUuid();
+        localStorage.setItem('unknownId', newUnknownUserId);
+  
+        this.unknownUserService.setUnknownUserId(newUnknownUserId)
+        this.unknownUserService.createUnknownUser(newUnknownUserId)
+      }
     }
   }
 
   // Set id local storage if user edit the id in localStorage
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload(event: BeforeUnloadEvent): void {
-    if (localStorage.getItem('userId') != this.protectedUserId) {
-      localStorage.setItem('userId', this.protectedUserId);
+    if (localStorage.getItem('userId') != this.usersService.getUserId()) {
+      localStorage.setItem('userId', this.usersService.getUserId());
+    }
+
+    if (localStorage.getItem('unknownId') != this.unknownUserService.getUnknownUserId()) {
+      localStorage.setItem('unknownId', this.unknownUserService.getUnknownUserId());
     }
   }  
 }

@@ -9,17 +9,15 @@ export class UnknownUserService {
 
   constructor(private http: HttpClient) { }
 
-  setUnknownUserId(newUnknownUserid: String) {
+  setUnknownUserId(newUnknownUserid: any) {
     this.unknownUserid = newUnknownUserid
   }
 
-  getUnknownUserId(): String {
+  getUnknownUserId(): any {
     return this.unknownUserid;
   }
 
   async createUnknownUser(idUser: String) {
-    console.log("Service to creat users");
-    
     const config = await import('../../../env.json');
     const url = config.url_backend + "/unknown-user/create"
 

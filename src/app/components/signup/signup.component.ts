@@ -37,7 +37,7 @@ export class SignupComponent {
 
   onSubmit() {
     // Get unknown id
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('unknownId');
 
     // Get form data
     const formData = {

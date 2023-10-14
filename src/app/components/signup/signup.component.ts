@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UnknownUserService } from 'src/app/services/unknown-user.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService) {
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService) {
     this.loadConfig()
   }
   
@@ -56,6 +57,7 @@ export class SignupComponent {
       .subscribe(response => {
 
         if (response.status === 200) {
+          this.usersService.setUserIdLocalStorage(response.body)
           this.router.navigate(['/home']);
         } else {
           this.displayErrorMessage = "*Email already in use"

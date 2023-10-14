@@ -59,11 +59,9 @@ export class UsersService {
       this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
         response => {
           if (response.status === 200) {
-            console.log("USER UASGES : ", response.body.user.currentUsages);
             this.email = response.body.user.email
             this.currentUsage = response.body.user.currentUsages
             this.maxUsages = response.body.user.maxUsages
-            console.log(response.body.user);
             resolve(response.body.user);
           } else {
             resolve(-1);

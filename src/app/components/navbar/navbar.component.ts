@@ -9,15 +9,14 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class NavbarComponent {
   activePageClass: any = 'gray';
-  email: String | undefined = "Get Started";
+  login: String | undefined = "Get Started";
 
   constructor(private router: Router, private usersService: UsersService) {
     this.usersService.email$.subscribe(email => {
-      console.log("EMAIl :", email);
       if(email) {
-        this.email = email;
+        this.login = "Profile";
       } else {
-        this.email = "Get Started"
+        this.login = "Get Started"
       }
     });
   }
@@ -51,9 +50,11 @@ export class NavbarComponent {
   }
 
   redirectToLoginPage() {
-    if (!this.usersService.getUserEmail()) {
+    if (!this.usersService.getUserId()) {
       this.router.navigate(['/login']);
-    } 
+    } else {
+      this.router.navigate(['/profil']);
+    }
   }
 
   redirectToTwitterPage() {

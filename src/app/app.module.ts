@@ -20,6 +20,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ClipboardComponent } from './components/clipboard/clipboard.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ClipboardComponent } from './components/clipboard/clipboard.component';
     AboutComponent,
     PricingComponent,
     ClipboardComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

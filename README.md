@@ -4,10 +4,12 @@
 - (Bouton pour intervetir les inputs / output)
 - ⚠️ Ajouter Backend Login / Signup + FrontEnd + Usages Back/Front
 - Regler dernier soucis responsive (surtout le translate-lang)
+- Responsive crée un composant, pour dire que l'app n'est pas dispo sur mobile
 
 - Atout (ProductHunt): 
 - Pas besoin de carte de credit
 - Pas besoin de ce crée un compte
+- Dispo dés maintenant
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 By Thomasperge (https://github.com/thomasperge)

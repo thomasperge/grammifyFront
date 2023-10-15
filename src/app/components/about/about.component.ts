@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
-  constructor(private router: Router) {}
+  login: String | undefined;
+
+  constructor(private router: Router, private usersService: UsersService) {
+    this.usersService.email$.subscribe(email => {
+      if(email) {
+        this.login = "Profile";
+      } else {
+        this.login = "Get Started"
+      }
+    });
+  }
 
   redirectToLoginPage() {
-    this.router.navigate(['/login']);
+    if (this.usersService.getUserId()) {
+      this.router.navigate(['/profil']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

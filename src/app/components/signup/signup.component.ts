@@ -61,6 +61,7 @@ export class SignupComponent {
           this.usersService.setUserIdLocalStorage(response.body)
           this.usagesService.setMaxUsages(response.body.user.maxUsages)
           this.usagesService.setUsages(response.body.user.currentUsages)
+          this.usersService.setUserEmail(response.body.user.email)
           
           console.log("SIGNUP SUBMIT COMPONENT");
           this.router.navigate(['/home']);

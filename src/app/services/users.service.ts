@@ -3,15 +3,17 @@ import { UnknownUserService } from './unknown-user.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsagesService } from './usages.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
   userid: String = ""
-  email: String = ""
   currentUsage: any = 0
   maxUsages: any = 0
+  private emailSubject = new BehaviorSubject<String>("");
+  email$ = this.emailSubject.asObservable();
 
   constructor(private unknownUserService: UnknownUserService, private http: HttpClient, private usagesService: UsagesService, private router: Router) { }
 
@@ -24,7 +26,11 @@ export class UsersService {
   }
 
   getUserEmail() {
-    return this.email
+    return this.emailSubject.value;
+  }
+
+  setUserEmail(newEmail: String) {
+    this.emailSubject.next(newEmail);
   }
 
   getCurrentUsages() {
@@ -61,7 +67,7 @@ export class UsersService {
           if (response.status === 200) {
             console.log("GET USER DATA - 200 oké");
 
-            this.email = response.body.user.email
+            this.emailSubject.next(response.body.user.email);
             this.currentUsage = response.body.user.currentUsages
             this.maxUsages = response.body.user.maxUsages
 

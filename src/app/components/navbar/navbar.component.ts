@@ -11,7 +11,16 @@ export class NavbarComponent {
   activePageClass: any = 'gray';
   email: String | undefined = "Get Started";
 
-  constructor(private router: Router, private usersService: UsersService) { }
+  constructor(private router: Router, private usersService: UsersService) {
+    this.usersService.email$.subscribe(email => {
+      console.log("EMAIl :", email);
+      if(email) {
+        this.email = email;
+      } else {
+        this.email = "Get Started"
+      }
+    });
+  }
 
   isHomePage() {
     return this.router.url.startsWith('/translator') || this.router.url.startsWith('/reformulate') || this.router.url.startsWith('/spell-checker')
@@ -41,8 +50,10 @@ export class NavbarComponent {
     this.router.navigate(['/pricing']);
   }
 
-  redirectToSignupPage() {
-    this.router.navigate(['/login']);
+  redirectToLoginPage() {
+    if (!this.usersService.getUserEmail()) {
+      this.router.navigate(['/login']);
+    } 
   }
 
   redirectToTwitterPage() {

@@ -21,6 +21,8 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ClipboardComponent } from './components/clipboard/clipboard.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { MobileComponent } from './components/mobile/mobile.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ProfilComponent } from './components/profil/profil.component';
     PricingComponent,
     ClipboardComponent,
     ProfilComponent,
+    MobileComponent,
+    CreateAccountComponent,
   ],
   imports: [
     BrowserModule,

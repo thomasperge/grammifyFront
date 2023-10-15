@@ -13,9 +13,9 @@ export class AboutComponent {
   constructor(private router: Router, private usersService: UsersService) {
     this.usersService.email$.subscribe(email => {
       if(email) {
-        this.login = "Profile";
+        this.login = "👤 Profile";
       } else {
-        this.login = "Get Started"
+        this.login = "🚀 Get Started"
       }
     });
   }

@@ -15,6 +15,7 @@ import { UsagesService } from './services/usages.service';
 export class AppComponent implements OnInit {
   title = 'GrammifyFront';
   isDisplayNavBar = true;
+  isSmallScreen: boolean = false;
 
   constructor(private router: Router, private unknownUserService: UnknownUserService, private usagesService: UsagesService, private usersService: UsersService) {
     // Check all changement route
@@ -27,6 +28,11 @@ export class AppComponent implements OnInit {
           this.isDisplayNavBar = true
         }
       }
+    });
+    // Check screen size
+    this.isSmallScreen = window.innerWidth < 370;
+    window.addEventListener('resize', () => {
+      this.isSmallScreen = window.innerWidth < 370;
     });
   }
 

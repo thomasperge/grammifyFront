@@ -2,9 +2,9 @@
 # A faire :
 
 - (Bouton pour intervetir les inputs / output)
-- ⚠️ Ajouter Backend Login / Signup + FrontEnd + Usages Back/Front
-- Regler dernier soucis responsive (surtout le translate-lang)
-- Responsive crée un composant, pour dire que l'app n'est pas dispo sur mobile
+- Pricing page
+- Set stripe id (only backend)
+- Ajouter un tools (uniquement pour ce qui ce sont crée un compte) ? (genre un business generator ? (avec un ring orange et border orange pour dire que c'est en beta ?, et obligé de ce crée un compte pour y avoir accès ?))
 
 - Atout (ProductHunt): 
 - Pas besoin de carte de credit

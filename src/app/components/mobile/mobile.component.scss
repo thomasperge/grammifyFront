@@ -1,0 +1,81 @@
+.mobileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.logoContainer {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImgContainer {
+  width: 57px;
+  height: 57px;
+  transform: translateX(-20px);
+  border: rgb(225, 225, 225) 2.5px solid;
+  padding: 1px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.logoImg {
+  padding-top: 2px;
+  width: 55px;
+  height: 55px;
+}
+
+.logoStop {
+  width: 57px;
+  height: 57px;
+  border: rgb(225, 225, 225) 2.5px solid;
+  padding: 3px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.errorMsg {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.mobileTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 0 3rem;
+  gap: 1rem;
+  text-align: center;
+}
+
+.title1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.title2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.footerContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin-top: 10%;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgb(179, 179, 179)
+}

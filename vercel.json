@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/home",
+      "dest": "/"
+    },
+    {
+      "src": "/translator",
+      "dest": "/"
+    },
+    {
+      "src": "/reformulate",
+      "dest": "/"
+    },
+    {
+      "src": "/spell-checker",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
+    },
+    {
+      "src": "/signup",
+      "dest": "/"
+    },
+    {
+      "src": "/about",
+      "dest": "/"
+    },
+    {
+      "src": "/pricing",
+      "dest": "/"
+    },
+    {
+      "src": "/profil",
+      "dest": "/"
+    }
+  ]
+}

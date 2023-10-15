@@ -10,9 +10,13 @@
   
   <app-usages></app-usages>
   
-  <div class="areaFlexBox">
+  <div *ngIf="spellCheckerDisplay" class="areaFlexBox">
     <app-input></app-input>
     <app-output></app-output>
+  </div>
+
+  <div *ngIf="!spellCheckerDisplay" class="areaFlexBox">
+    <app-create-account></app-create-account>
   </div>
 
   <div class="emptyContainer"></div>

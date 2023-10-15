@@ -1,10 +1,16 @@
-<!-- NavBar -->
-<app-navbar *ngIf="isDisplayNavBar"></app-navbar>
+<div *ngIf="!isSmallScreen">
+  <!-- NavBar -->
+  <app-navbar *ngIf="isDisplayNavBar"></app-navbar>
+  
+  <!-- Component -->
+  <router-outlet></router-outlet>
+  
+  <!-- Footer -->
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</div>
 
-<!-- Component -->
-<router-outlet></router-outlet>
-
-<!-- Footer -->
-<footer>
-  <app-footer></app-footer>
-</footer>
+<div *ngIf="isSmallScreen">
+  <app-mobile></app-mobile>
+</div>

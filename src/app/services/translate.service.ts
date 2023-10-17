@@ -22,22 +22,17 @@ export class TranslateService {
     }
   }
 
-  getTranslateOutput(query: String) {
-    const url = this.envUrl + "/translate"
-
-    this.activatedRoute.queryParamMap.subscribe(params => {
-      this.lang = params.get('lang');
-    })
-
+  getTranslateOutput(query: any, lang: any) {
+    const url = this.envUrl + "/translate";
     const data: any = {
       query: query,
-      lang: this.lang
+      lang: lang
     };
-
+  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
+  
     return this.http.post(url, data, { headers });
   }
 }

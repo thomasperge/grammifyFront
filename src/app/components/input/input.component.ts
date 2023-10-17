@@ -93,57 +93,62 @@ export class InputComponent {
       if (this.activedRouteService.isActiveRoute('/translator')) {
         // Translate
         this.activatedRoute.queryParamMap.subscribe(params => {
-            if (params.has('lang') && currentLength >= 1 && this.checkUsagesLimit()) {
-            
+          if (params.has('lang') && currentLength >= 1 && this.checkUsagesLimit()) {
             // Set usages
-            this.usagesService.addUsages()
-            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId)
-            
-            this.spinnerOutputService.showLoader()
-            // Subscribe to Observer to get response
-            this.translateService.getTranslateOutput(query).subscribe(response => {
-              
-              this.responseGpt = response
+            this.usagesService.addUsages();
+            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
+        
+            this.spinnerOutputService.showLoader();
+        
+            // Extract the lang value from the params
+            const lang = params.get('lang');
+        
+            this.translateService.getTranslateOutput(query, lang).subscribe(response => {
+              this.responseGpt = response;
               this.outputContent = this.responseGpt.choices[0].message.content;
-              
-              this.spinnerOutputService.hideLoader()
-              this.sendOutputData()
+        
+              this.spinnerOutputService.hideLoader();
+              this.sendOutputData();
             });
           }
-        })
+        });
       } else if (this.activedRouteService.isActiveRoute('/reformulate')) {
         // Reformulate
         this.activatedRoute.queryParamMap.subscribe(params => {
           if (params.has('lvl') && params.has('length') && currentLength >= 1 && this.checkUsagesLimit()) {
             // Set usages
-            this.usagesService.addUsages()
-            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId)
-
-            this.spinnerOutputService.showLoader()
-            // Subscribe to Observer to get response
-            this.reformulateService.getReformulateOutput(query).subscribe(response => {
-              this.responseGpt = response
+            this.usagesService.addUsages();
+            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
+        
+            this.spinnerOutputService.showLoader();
+        
+            // Extract the lvl and length values from the params
+            const lvl = params.get('lvl');
+            const length = params.get('length');
+        
+            this.reformulateService.getReformulateOutput(query, lvl, length).subscribe(response => {
+              this.responseGpt = response;
               this.outputContent = this.responseGpt.choices[0].message.content;
-              
-              this.spinnerOutputService.hideLoader()
-              this.sendOutputData()
+        
+              this.spinnerOutputService.hideLoader();
+              this.sendOutputData();
             });
           }
-        })
+        });
       } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
         // Spell Checker
         if (currentLength >= 1 && this.checkUsagesLimit()) {
           // Set usages
-          this.usagesService.addUsages()
-          userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId)
-
-          this.spinnerOutputService.showLoader()
-          // Subscribe to Observer to get response
+          this.usagesService.addUsages();
+          userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
+        
+          this.spinnerOutputService.showLoader();
+        
           this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
-            this.responseGpt = response
+            this.responseGpt = response;
             this.outputContent = this.responseGpt.choices[0].message.content;
-            
-            this.spinnerOutputService.hideLoader()
+        
+            this.spinnerOutputService.hideLoader();
             this.sendOutputData();
           });
         }

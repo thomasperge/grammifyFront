@@ -23,24 +23,19 @@ export class ReformulateService {
     }
   }
 
-  getReformulateOutput(query: String) {
-    const url = this.envUrl + "/reformulate"
-
-    this.activatedRoute.queryParamMap.subscribe(params => {
-      this.lvl = params.get('lvl');
-      this.length = params.get('length');
-    })
-
+  getReformulateOutput(query: any, lvl: any, length: any) {
+    const url = this.envUrl + "/reformulate";
+  
     const data: any = {
       query: query,
-      lvl: this.lvl,
-      length: this.length
+      lvl: lvl,
+      length: length
     };
-
+  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-
+  
     return this.http.post(url, data, { headers });
   }
 }

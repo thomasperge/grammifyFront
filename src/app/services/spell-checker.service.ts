@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SpellCheckerService {
   envUrl: any;
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient) {
     this.loadConfig()
   }
 

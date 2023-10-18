@@ -1,14 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReformulateService {
-  envUrl: any;
-  lvl: any;
-  length: any;
+export class BillingPortalService {
+  envUrl = ""
 
   constructor(private http: HttpClient) {
     this.loadConfig()
@@ -23,13 +20,11 @@ export class ReformulateService {
     }
   }
 
-  getReformulateOutput(query: any, lvl: any, length: any) {
-    const url = this.envUrl + "/reformulate";
-  
+  getSessionUrl(userId: any) {
+    const url = this.envUrl + "/stripe/billing-portal";
+    
     const data: any = {
-      query: query,
-      lvl: lvl,
-      length: length
+      id: userId,
     };
   
     const headers = new HttpHeaders({

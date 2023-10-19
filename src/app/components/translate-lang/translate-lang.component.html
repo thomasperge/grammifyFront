@@ -1,21 +1,39 @@
 <div class="translate-lang-area">
   <div class="translate-lang-container inline-flex rounded-md" role="group">
     <!-- France Button - Translate -->
-    <button (click)="redirectToTranslatePage('fr')" [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'fr' }" id="fr" type="button" class="langButton inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    <button
+      (click)="redirectToTranslatePage('fr')"
+      [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'fr' }"
+      id="fr"
+      type="button"
+      class="langButton inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+    >
       <div class="w-4 h-4 mr-2">
         <img src="./../../assets/flag/flag-wf-svgrepo-com.svg" alt="" />
       </div>
       France
     </button>
     <!-- England Button - Translate -->
-    <button (click)="redirectToTranslatePage('en')" [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'en' }" id="en" type="button" class="langButton inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border-t border-b border-gray-200 border-l border-r hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    <button
+      (click)="redirectToTranslatePage('en')"
+      [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'en' }"
+      id="en"
+      type="button"
+      class="langButton inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border-t border-b border-gray-200 border-l border-r hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+    >
       <div class="w-4 h-4 mr-2">
         <img src="./../../assets/flag/flag-us-svgrepo-com.svg" alt="" />
       </div>
       England
     </button>
     <!-- Spanish Button - Translate -->
-    <button (click)="redirectToTranslatePage('sp')" [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'sp' }" id="sp" type="button" class="langButton inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    <button
+      (click)="redirectToTranslatePage('sp')"
+      [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'sp' }"
+      id="sp"
+      type="button"
+      class="langButton inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+    >
       <div class="w-4 h-4 mr-2">
         <img src="./../../assets/flag/flag-es-svgrepo-com.svg" alt="" />
       </div>
@@ -23,11 +41,17 @@
     </button>
 
     <!-- Dropdown button - Translate -->
-    <button (click)="toggleDropdownLang()" [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'dd' }" id="dd" type="button" class="langButton inline-flex items-center px-0 py-1 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+    <button
+      (click)="toggleDropdownLang()"
+      [ngClass]="{ 'ring-2 ring-blue-300 z-10': activeButton === 'dd' }"
+      id="dd"
+      type="button"
+      class="langButton inline-flex items-center px-0 py-1 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-300 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+    >
       <!-- Flag Selected in Dropdown - Display Flag -->
-      <div *ngIf = "displayFlagDropDown != null">
+      <div *ngIf="displayFlagDropDown != null">
         <div class="centerFlag w-5">
-          <img src="{{ displayFlagDropDown }}" alt=""/>
+          <img src="{{ displayFlagDropDown }}" alt="" />
         </div>
       </div>
 
@@ -46,11 +70,11 @@
               <app-flag-lang (click)="setDropdownLang('de')" [countryName]="'Deutsh'" [flagUrl]="'./../../../assets/flag/flag-de-svgrepo-com.svg'"></app-flag-lang>
               <app-flag-lang (click)="setDropdownLang('cn')" [countryName]="'Chinese'" [flagUrl]="'./../../../assets/flag/flag-cn-svgrepo-com.svg'"></app-flag-lang>
               <app-flag-lang (click)="setDropdownLang('sa')" [countryName]="'Arabe'" [flagUrl]="'./../../../assets/flag/flag-sa-svgrepo-com.svg'"></app-flag-lang>
-            
+
               <app-flag-lang (click)="setDropdownLang('pt')" [countryName]="'Portuges'" [flagUrl]="'./../../../assets/flag/flag-pt-svgrepo-com.svg'"></app-flag-lang>
               <app-flag-lang (click)="setDropdownLang('jp')" [countryName]="'Japanese'" [flagUrl]="'./../../../assets/flag/flag-jp-svgrepo-com.svg'"></app-flag-lang>
               <app-flag-lang (click)="setDropdownLang('it')" [countryName]="'Italia'" [flagUrl]="'./../../../assets/flag/flag-it-svgrepo-com.svg'"></app-flag-lang>
-            
+
               <app-flag-lang (click)="setDropdownLang('nl')" [countryName]="'PayBas'" [flagUrl]="'./../../../assets/flag/flag-nl-svgrepo-com.svg'"></app-flag-lang>
               <app-flag-lang (click)="setDropdownLang('kr')" [countryName]="'Corean'" [flagUrl]="'./../../../assets/flag/flag-kr-svgrepo-com.svg'"></app-flag-lang>
             </div>
@@ -59,6 +83,6 @@
       </div>
     </div>
   </div>
-  
+
   <app-clipboard></app-clipboard>
 </div>

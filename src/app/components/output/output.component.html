@@ -32,15 +32,15 @@
     </div>
     <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
       <!-- Display Translate Lang Component -->
-      <div *ngIf="isTranslateRouteActive()" style="width: 100%;">
+      <div *ngIf="isTranslateRouteActive()" style="width: 100%">
         <app-translate-lang></app-translate-lang>
       </div>
       <!-- Display Reformulate Settings Component -->
-      <div *ngIf="isReformulateRouteActive()" style="width: 100%;">
+      <div *ngIf="isReformulateRouteActive()" style="width: 100%">
         <app-reformulate-settings></app-reformulate-settings>
       </div>
       <!-- Display Spell Checker empty Component -->
-      <div *ngIf="isSpellCheckerRouteActive()" style="width: 100%;">
+      <div *ngIf="isSpellCheckerRouteActive()" style="width: 100%">
         <div class="emptyComponent">
           <app-clipboard></app-clipboard>
         </div>

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsagesService } from './usages.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +52,7 @@ export class UsersService {
 
   async getUserData(userId: any) {
     return new Promise<any>(async (resolve, reject) => {
-      const config = await import('../../../env.json');
-      const url = config.url_backend + "/users/get-data";
+      const url = environment.apiURL + "/users/get-data";
   
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -88,8 +88,7 @@ export class UsersService {
   }
 
   async addUserUsages(userId: string) {
-    const config = await import('../../../env.json');
-    const url = config.url_backend + "/users/add-usage"
+    const url = environment.apiURL + "/users/add-usage"
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

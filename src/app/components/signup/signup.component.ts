@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UnknownUserService } from 'src/app/services/unknown-user.service';
 import { UsersService } from 'src/app/services/users.service';
 import { UsagesService } from 'src/app/services/usages.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-signup',
@@ -15,32 +16,19 @@ export class SignupComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) {
-    this.loadConfig()
-  }
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) { }
   
   signupForm = this.formBuilder.group({
     email: '',
     password: ''
   });
 
-  async loadConfig() {
-    try {
-      const config = await import('./../../../../env.json');
-      this.envUrl = config.url_backend;
-    } catch (error) {
-      console.error('Error loading env file :', error);
-    }
-  }
 
   redirectToLoginPage() {
     this.router.navigate(['/login']);
   }
 
   onSubmit() {
-    // Get unknown id
-    const userId = localStorage.getItem('unknownId');
-
     // Get form data
     const formData = {
       email: this.signupForm.value.email,
@@ -52,7 +40,7 @@ export class SignupComponent {
       'Content-Type': 'application/json'
     });
 
-    const uri = this.envUrl + "/users/signup"
+    const uri = environment.apiURL + "/users/signup"
     
     this.http.post<any>(uri, formData, { headers, observe: 'response' })
       .subscribe(response => {

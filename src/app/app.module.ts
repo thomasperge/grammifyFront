@@ -51,7 +51,7 @@ import { CreateAccountComponent } from './components/create-account/create-accou
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ClipboardModule
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

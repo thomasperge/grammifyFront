@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +10,10 @@ export class ReformulateService {
   lvl: any;
   length: any;
 
-  constructor(private http: HttpClient) {
-    this.loadConfig()
-  }
-
-  async loadConfig() {
-    try {
-      const config = await import('./../../../env.json');
-      this.envUrl = config.url_backend;
-    } catch (error) {
-      console.error('Error loading env file :', error);
-    }
-  }
+  constructor(private http: HttpClient) { }
 
   getReformulateOutput(query: any, lvl: any, length: any) {
-    const url = this.envUrl + "/reformulate";
+    const url = environment.apiURL + "/reformulate";
   
     const data: any = {
       query: query,

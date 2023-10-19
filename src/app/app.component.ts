@@ -44,6 +44,8 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     initFlowbite();
+
+    console.log(process.env['URL_BACKEND']);
     
     const unknownUserId = localStorage.getItem('unknownId');
     const userId = localStorage.getItem('userId')

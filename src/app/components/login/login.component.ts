@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { UsagesService } from 'src/app/services/usages.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,23 +15,12 @@ export class LoginComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService, private usagesService: UsagesService) {
-    this.loadConfig()
-  }
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService, private usagesService: UsagesService) { }
 
   loginForm = this.formBuilder.group({
     email: '',
     password: ''
   });
-
-  async loadConfig() {
-    try {
-      const config = await import('./../../../../env.json');
-      this.envUrl = config.url_backend;
-    } catch (error) {
-      console.error('Error loading env file :', error);
-    }
-  }
 
   redirectToSignupPage() {
     this.router.navigate(['/signup']);
@@ -47,7 +37,7 @@ export class LoginComponent {
       'Content-Type': 'application/json'
     });
 
-    const uri = this.envUrl + "/users/login"
+    const uri = environment.apiURL + "/users/login"
     
     this.http.post<any>(uri, formData, { headers, observe: 'response' })
       .subscribe(response => {

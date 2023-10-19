@@ -1,1 +1,5 @@
-<div class="usagesArea">Usages {{ usages }}/ {{ maxUsages }}</div>
+<div class="usagesArea">
+  <span>
+    Usages <span [ngStyle]="{ color: usages === maxUsages ? 'red' : 'initial' }">{{ usages }}/ {{ maxUsages }}</span>
+  </span>
+</div>

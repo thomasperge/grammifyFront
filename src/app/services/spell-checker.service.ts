@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 export class SpellCheckerService {
   envUrl: any;
 
-  constructor(private http: HttpClient) {
-    this.loadConfig()
-  }
-
-  async loadConfig() {
-    try {
-      const config = await import('./../../../env.json');
-      this.envUrl = config.url_backend;
-    } catch (error) {
-      console.error('Error loading env file :', error);
-    }
-  }
+  constructor(private http: HttpClient) { }
 
   getSpellCheckerOutput(query: String) {
-    const url = this.envUrl + "/spell-checker"
+    const url = environment.apiURL + "/spell-checker"
 
     const data: any = {
       query: query,

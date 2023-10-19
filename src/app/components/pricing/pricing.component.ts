@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class PricingComponent {
   userId = "";
+  isConnected: boolean = this.usersService.getUserId();
   url: any;
 
   constructor(private billingPortalService: BillingPortalService, private usersService: UsersService) { }

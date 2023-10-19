@@ -16,9 +16,10 @@ export class AppComponent implements OnInit {
   title = 'GrammifyFront';
   isDisplayNavBar = true;
   isSmallScreen: boolean = false;
+  isLoading: boolean = true;
 
   constructor(private router: Router, private unknownUserService: UnknownUserService, private usagesService: UsagesService, private usersService: UsersService) {
-    // Check all changement route
+    // Check all route changes
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Undisplay navbar if /login or /signup route
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
         }
       }
     });
+
     // Check screen size
     this.isSmallScreen = window.innerWidth < 370;
     window.addEventListener('resize', () => {
@@ -41,31 +43,38 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    console.log('ON INIIIIIIT !');
-    
     initFlowbite();
     
     const unknownUserId = localStorage.getItem('unknownId');
     const userId = localStorage.getItem('userId')
     
     if (userId) {
-      // Load all user data
-      await this.usersService.getUserData(userId)
+      // Get User Data
+      this.isLoading = true;
 
-      this.usersService.setUserId(userId)
-      this.unknownUserService.setUnknownUserId(unknownUserId)
+      await this.usersService.getUserData(userId);
+      this.usersService.setUserId(userId);
+      this.unknownUserService.setUnknownUserId(unknownUserId);
+
+      this.isLoading = false;
     } else {
       if (unknownUserId) {
-        // Load all user data
-        await this.unknownUserService.getUnknownUserData(unknownUserId)
+        // Get Unknown user data
+        this.isLoading = true;
 
-        this.unknownUserService.setUnknownUserId(unknownUserId)
+        await this.unknownUserService.getUnknownUserData(unknownUserId);
+        this.unknownUserService.setUnknownUserId(unknownUserId);
+
+        this.isLoading = false;
       } else {
         const newUnknownUserId = this.generateUuid();
         localStorage.setItem('unknownId', newUnknownUserId);
-  
-        this.unknownUserService.setUnknownUserId(newUnknownUserId)
-        this.unknownUserService.createUnknownUser(newUnknownUserId)
+    
+        this.isLoading = true;
+        this.unknownUserService.setUnknownUserId(newUnknownUserId);
+    
+        await this.unknownUserService.createUnknownUser(newUnknownUserId);
+        this.isLoading = false;
       }
     }
   }

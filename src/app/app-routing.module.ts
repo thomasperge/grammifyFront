@@ -26,3 +26,16 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
+
+// Degager couleur footer
+// navbar : space-beeween
+// Usages coler le 0/0
+// CopiCliboadr, background vlue
+
+
+// grammity.com
+// grammulate.com
+// grammscribe.com |
+// grammila.com
+// grammito.com
+// grammiti.com

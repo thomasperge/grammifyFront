@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
     });
 
     // Check screen size
-    this.isSmallScreen = window.innerWidth < 370;
+    this.isSmallScreen = window.innerWidth < 350;
     window.addEventListener('resize', () => {
-      this.isSmallScreen = window.innerWidth < 370;
+      this.isSmallScreen = window.innerWidth < 350;
     });
   }
 

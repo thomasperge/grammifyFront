@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { EnvironnementService } from 'src/app/services/environnement.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,10 @@ import { environment } from 'src/environments/environment';
 export class BillingPortalService {
   envUrl = ""
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private environnementService: EnvironnementService) { }
 
   getSessionUrl(userId: any) {
-    const url = environment.apiURL + "/stripe/billing-portal";
+    const url = this.environnementService.getUrlBackend() + "/stripe/billing-portal";
     
     const data: any = {
       id: userId,

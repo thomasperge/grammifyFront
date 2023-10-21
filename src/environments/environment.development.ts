@@ -1,3 +1,5 @@
-export const environment = {
-  apiURL: 'https://awful-panama-hat-ray.cyclic.app/'
+export const environmentDev = {
+  production: false,
+  apiURL: 'http://localhost:3000',
+  activedDev : true,
 };

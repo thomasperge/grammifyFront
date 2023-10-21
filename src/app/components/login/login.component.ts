@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { UsagesService } from 'src/app/services/usages.service';
-import { environment } from 'src/environments/environment';
+import { EnvironnementService } from 'src/app/services/environnement.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService, private usagesService: UsagesService) { }
+  constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService, private usagesService: UsagesService) { }
 
   loginForm = this.formBuilder.group({
     email: '',
@@ -37,7 +37,7 @@ export class LoginComponent {
       'Content-Type': 'application/json'
     });
 
-    const uri = environment.apiURL + "/users/login"
+    const uri = this.environnementService.getUrlBackend() + "/users/login"
     
     this.http.post<any>(uri, formData, { headers, observe: 'response' })
       .subscribe(response => {

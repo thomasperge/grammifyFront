@@ -16,7 +16,7 @@ export class OfficeComponent implements OnInit {
   ngOnInit() {
     this.route.url.subscribe(urlSegments => {
       // Display or not Spell Checker
-      this.spellCheckerDisplay = ['translator', 'reformulate'].includes(urlSegments[0].path) || (urlSegments[0].path === 'spell-checker' && this.usersService.getUserId());
+      this.spellCheckerDisplay = ['translator', 'rewriter'].includes(urlSegments[0].path) || (urlSegments[0].path === 'spell-checker' && this.usersService.getUserId());
       
       const urlSegment = urlSegments[0].path;
       this.setHighlightButton(urlSegment);
@@ -28,7 +28,7 @@ export class OfficeComponent implements OnInit {
   }
 
   redirectToReformulatePage() {
-    this.router.navigate(['/reformulate']);
+    this.router.navigate(['/rewriter']);
   }
 
   redirectToSpellCheckerPage() {

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UsagesService } from './usages.service';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { EnvironnementService } from 'src/app/services/environnement.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class UnknownUserService {
   currentUsages: any = 0
   maxUsages: any = 0
 
-  constructor(private http: HttpClient, private usagesService: UsagesService, private router: Router) { }
+  constructor(private http: HttpClient, private usagesService: UsagesService, private router: Router, private environnementService: EnvironnementService) { }
 
   setUnknownUserId(newUnknownUserid: any) {
     this.unknownUserid = newUnknownUserid
@@ -31,7 +31,7 @@ export class UnknownUserService {
   }
 
   async createUnknownUser(idUser: String) {
-    const url = environment.apiURL + "/unknown-user/create"
+    const url = this.environnementService.getUrlBackend() + "/unknown-user/create"
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export class UnknownUserService {
 
   async getUnknownUserData(idUser: String) {
     return new Promise<number>(async (resolve, reject) => {
-      const url = environment.apiURL + "/unknown-user/get-data";
+      const url = this.environnementService.getUrlBackend() + "/unknown-user/get-data";
   
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ export class UnknownUserService {
   }
 
   async addUsageUnknownUser(idUser: string) {
-    const url = environment.apiURL + "/unknown-user/add-usage"
+    const url = this.environnementService.getUrlBackend() + "/unknown-user/add-usage"
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

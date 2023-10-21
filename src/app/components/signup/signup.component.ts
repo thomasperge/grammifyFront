@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UnknownUserService } from 'src/app/services/unknown-user.service';
 import { UsersService } from 'src/app/services/users.service';
 import { UsagesService } from 'src/app/services/usages.service';
-import { environment } from 'src/environments/environment';
+import { EnvironnementService } from 'src/app/services/environnement.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +16,7 @@ export class SignupComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) { }
+  constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) { }
   
   signupForm = this.formBuilder.group({
     email: '',
@@ -40,7 +40,7 @@ export class SignupComponent {
       'Content-Type': 'application/json'
     });
 
-    const uri = environment.apiURL + "/users/signup"
+    const uri = this.environnementService.getUrlBackend() + "/users/signup"
     
     this.http.post<any>(uri, formData, { headers, observe: 'response' })
       .subscribe(response => {

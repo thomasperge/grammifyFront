@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { EnvironnementService } from 'src/app/services/environnement.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,10 @@ import { environment } from 'src/environments/environment';
 export class SpellCheckerService {
   envUrl: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private environnementService: EnvironnementService) { }
 
   getSpellCheckerOutput(query: String) {
-    const url = environment.apiURL + "/spell-checker"
+    const url = this.environnementService.getUrlBackend() + "/spell-checker"
 
     const data: any = {
       query: query,

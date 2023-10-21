@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'translator', pathMatch: 'full' },
   { path: 'home', redirectTo: 'translator', pathMatch: 'full' },
   { path: 'translator', component: OfficeComponent },
-  { path: 'reformulate', component: OfficeComponent },
+  { path: 'rewriter', component: OfficeComponent },
   { path: 'spell-checker', component: OfficeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

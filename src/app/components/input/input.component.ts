@@ -42,7 +42,7 @@ export class InputComponent {
   isReformulateRouteActive(): boolean {
     this.initText()
     this.updateLetterCounter();
-    return this.activedRouteService.isActiveRoute('/reformulate');
+    return this.activedRouteService.isActiveRoute('/rewriter');
   }
 
   isSpellCheckerRouteActive(): boolean {
@@ -116,7 +116,7 @@ export class InputComponent {
               });
             }
           });
-        } else if (this.activedRouteService.isActiveRoute('/reformulate')) {
+        } else if (this.activedRouteService.isActiveRoute('/rewriter')) {
           // Reformulate
           this.activatedRoute.queryParamMap.subscribe(params => {
             if (params.has('lvl') && params.has('length') && currentLength >= 1) {

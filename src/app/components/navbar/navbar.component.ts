@@ -22,7 +22,7 @@ export class NavbarComponent {
   }
 
   isHomePage() {
-    return this.router.url.startsWith('/translator') || this.router.url.startsWith('/reformulate') || this.router.url.startsWith('/spell-checker')
+    return this.router.url.startsWith('/translator') || this.router.url.startsWith('/rewriter') || this.router.url.startsWith('/spell-checker')
   }
 
   isAboutPage() {

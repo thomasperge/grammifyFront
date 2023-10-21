@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsagesService } from './usages.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { EnvironnementService } from 'src/app/services/environnement.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class UsersService {
   private emailSubject = new BehaviorSubject<String>("");
   email$ = this.emailSubject.asObservable();
 
-  constructor(private unknownUserService: UnknownUserService, private http: HttpClient, private usagesService: UsagesService, private router: Router) { }
+  constructor(private unknownUserService: UnknownUserService, private http: HttpClient, private usagesService: UsagesService, private router: Router, private environnementService: EnvironnementService) { }
 
   setUserId(newUserid: String) {
     this.userid = newUserid
@@ -52,7 +52,7 @@ export class UsersService {
 
   async getUserData(userId: any) {
     return new Promise<any>(async (resolve, reject) => {
-      const url = environment.apiURL + "/users/get-data";
+      const url = this.environnementService.getUrlBackend() + "/users/get-data";
   
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ export class UsersService {
   }
 
   async addUserUsages(userId: string) {
-    const url = environment.apiURL + "/users/add-usage"
+    const url = this.environnementService.getUrlBackend() + "/users/add-usage"
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

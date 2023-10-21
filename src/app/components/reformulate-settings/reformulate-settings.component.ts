@@ -61,7 +61,7 @@ export class ReformulateSettingsComponent {
       }
 
       // Naviguer avec les deux paramètres
-      this.router.navigate(['/reformulate'], {
+      this.router.navigate(['/rewriter'], {
         queryParams: { lvl: this.levelSelected, length: this.lengthSelected },
         queryParamsHandling: 'merge',
         replaceUrl: true
@@ -72,7 +72,7 @@ export class ReformulateSettingsComponent {
   setLevelLevel(level: number) {
     this.levelSelected = level;
 
-    if (this.routeActiveService.isActiveRoute('/reformulate')) {
+    if (this.routeActiveService.isActiveRoute('/rewriter')) {
       this.updateParamsService.updateQueryParam('lvl', level);
       this.toggleDropdownLevel();
     }
@@ -81,7 +81,7 @@ export class ReformulateSettingsComponent {
   setLengthLevel(length: string) {
     this.lengthSelected = length;
 
-    if (this.routeActiveService.isActiveRoute('/reformulate')) {
+    if (this.routeActiveService.isActiveRoute('/rewriter')) {
       this.updateParamsService.updateQueryParam('length', length);
       this.toggleDropdownLength();
     }

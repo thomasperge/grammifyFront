@@ -32,7 +32,7 @@ export class OutputComponent implements OnInit {
   }
 
   isReformulateRouteActive(): boolean {
-    return this.activedRouteService.isActiveRoute('/reformulate');
+    return this.activedRouteService.isActiveRoute('/rewriter');
   }
 
   isSpellCheckerRouteActive(): boolean {

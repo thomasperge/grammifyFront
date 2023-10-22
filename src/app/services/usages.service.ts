@@ -12,7 +12,6 @@ export class UsagesService {
   maxUsages$ = this.maxUsagesSubject.asObservable();
 
   setUsages(nbUsages: number) {
-    console.log("SERVICE - SET USAGES : ", nbUsages);
     this.currentUsagesSubject.next(nbUsages);
   }
 
@@ -21,17 +20,14 @@ export class UsagesService {
   }
 
   getUsages() {
-    console.log("SERVICE - GET USAGES : ", this.currentUsagesSubject.value);
     return this.currentUsagesSubject.value;
   }
 
   setMaxUsages(newMaxUsages: any) {
-    console.log("SERVICE - SET MAX USAGES : ", newMaxUsages);
     this.maxUsagesSubject.next(newMaxUsages);
   }
 
   getMaxUsages() {
-    console.log("SERVICE - GET MAX USAGES : ", this.maxUsagesSubject.value);
     return this.maxUsagesSubject.value;
   }
 }

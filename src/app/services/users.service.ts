@@ -65,7 +65,6 @@ export class UsersService {
       this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
         response => {
           if (response.status === 200) {
-            console.log("GET USER DATA - 200 oké");
 
             this.emailSubject.next(response.body.user.email);
             this.currentUsage = response.body.user.currentUsages
@@ -98,16 +97,6 @@ export class UsersService {
       id: userId
     }
 
-    this.http.post<any>(url, data, { headers, observe: 'response' })
-      .subscribe(response => {
-
-        if (response.status === 200) {
-          console.log("Usage added");
-        } else {
-          console.log("Error : Cannot added usage !");
-        }
-      }, error => {
-          console.log("Error : Cannot added usage !");
-      });
+    this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe();
   }
 }

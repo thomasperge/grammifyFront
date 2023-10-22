@@ -2,6 +2,8 @@
 
 # A faire :
 
+- REFAIRE REFONT DU SUBMIT !
+
 <!-- A faire ! -->
 
 - Ajouter un tools (uniquement pour ce qui ce sont crée un compte) ? (genre un business generator ? (avec un ring orange et border orange pour dire que c'est en beta ?, et obligé de ce crée un compte pour y avoir accès ?))
@@ -14,6 +16,20 @@
 - Pas besoin de carte de credit
 - Pas besoin de ce crée un compte
 - Dispo dés maintenant
+
+<!-- Domain -->
+// Degager couleur footer
+// navbar : space-beeween
+// Usages coler le 0/0
+// CopiCliboadr, background vlue
+
+
+// grammity.com
+// grammulate.com
+// grammscribe.com |
+// grammila.com
+// grammito.com
+// grammiti.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 By Thomasperge (https://github.com/thomasperge)

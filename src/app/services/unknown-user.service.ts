@@ -43,19 +43,13 @@ export class UnknownUserService {
 
     this.http.post<any>(url, data, { headers, observe: 'response' })
       .subscribe(response => {
-        console.log("Service to creat users : In suscribe");
-
         if (response.status === 200) {
           this.currentUsages = response.body.user.currentUsages
           this.maxUsages = response.body.user.maxUsages
 
           this.usagesService.setUsages(response.body.user.currentUsages)
           this.usagesService.setMaxUsages(response.body.user.maxUsages)
-        } else {
-          console.log("Error : Users not Created !");
         }
-      }, error => {
-          console.log("Error : Users not Created !");
       });
   }
 
@@ -104,16 +98,6 @@ export class UnknownUserService {
       id: idUser
     }
 
-    this.http.post<any>(url, data, { headers, observe: 'response' })
-      .subscribe(response => {
-
-        if (response.status === 200) {
-          console.log("Usage added");
-        } else {
-          console.log("Error : Cannot added usage !");
-        }
-      }, error => {
-          console.log("Error : Cannot added usage !");
-      });
+    this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe();
   }
 }

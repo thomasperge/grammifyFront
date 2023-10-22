@@ -51,7 +51,6 @@ export class SignupComponent {
           this.usagesService.setUsages(response.body.user.currentUsages)
           this.usersService.setUserEmail(response.body.user.email)
           
-          console.log("SIGNUP SUBMIT COMPONENT");
           this.router.navigate(['/home']);
         } else {
           this.displayErrorMessage = "*Email already in use"

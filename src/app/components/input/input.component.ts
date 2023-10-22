@@ -96,49 +96,47 @@ export class InputComponent {
       } else {
         if (this.activedRouteService.isActiveRoute('/translator')) {
           // Translate
-          this.activatedRoute.queryParamMap.subscribe(params => {
-            if (params.has('lang') && currentLength >= 1) {
-              // Set usages
-              this.usagesService.addUsages();
-              userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
-          
-              this.spinnerOutputService.showLoader();
-          
-              // Extract the lang value from the params
-              const lang = params.get('lang');
-          
-              this.translateService.getTranslateOutput(query, lang).subscribe(response => {
-                this.responseGpt = response;
-                this.outputContent = this.responseGpt.choices[0].message.content;
-          
-                this.spinnerOutputService.hideLoader();
-                this.sendOutputData();
-              });
-            }
-          });
+          if (this.activatedRoute.snapshot.queryParamMap.has('lang') && currentLength >= 1) {
+            // Set usages
+            this.usagesService.addUsages();
+            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
+        
+            this.spinnerOutputService.showLoader();
+        
+            // Extract the lang value from the params
+            const lang = this.activatedRoute.snapshot.queryParamMap.get('lang');;
+        
+            this.translateService.getTranslateOutput(query, lang).subscribe(response => {
+              this.responseGpt = response;
+              this.outputContent = this.responseGpt.choices[0].message.content;
+        
+              this.spinnerOutputService.hideLoader();
+              this.sendOutputData();
+              return
+            });
+          }
         } else if (this.activedRouteService.isActiveRoute('/rewriter')) {
           // Reformulate
-          this.activatedRoute.queryParamMap.subscribe(params => {
-            if (params.has('lvl') && params.has('length') && currentLength >= 1) {
-              // Set usages
-              this.usagesService.addUsages();
-              userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
-          
-              this.spinnerOutputService.showLoader();
-          
-              // Extract the lvl and length values from the params
-              const lvl = params.get('lvl');
-              const length = params.get('length');
-          
-              this.reformulateService.getReformulateOutput(query, lvl, length).subscribe(response => {
-                this.responseGpt = response;
-                this.outputContent = this.responseGpt.choices[0].message.content;
-          
-                this.spinnerOutputService.hideLoader();
-                this.sendOutputData();
-              });
-            }
-          });
+          if (this.activatedRoute.snapshot.queryParamMap.has('lvl') && this.activatedRoute.snapshot.queryParamMap.has('length') && currentLength >= 1) {
+            // Set usages
+            this.usagesService.addUsages();
+            userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
+        
+            this.spinnerOutputService.showLoader();
+        
+            // Extract the lvl and length values from the params
+            const lvl = this.activatedRoute.snapshot.queryParamMap.has('lvl');
+            const length = this.activatedRoute.snapshot.queryParamMap.has('length');
+        
+            this.reformulateService.getReformulateOutput(query, lvl, length).subscribe(response => {
+              this.responseGpt = response;
+              this.outputContent = this.responseGpt.choices[0].message.content;
+        
+              this.spinnerOutputService.hideLoader();
+              this.sendOutputData();
+              return
+            });
+          }
         } else if (this.activedRouteService.isActiveRoute('/spell-checker')) {
           // Spell Checker
           if (currentLength >= 1) {
@@ -149,19 +147,22 @@ export class InputComponent {
             this.spinnerOutputService.showLoader();
           
             this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
+              console.log("HERE");
+              
               this.responseGpt = response;
               this.outputContent = this.responseGpt.choices[0].message.content;
           
               this.spinnerOutputService.hideLoader();
               this.sendOutputData();
+              return
             });
           }
         }
       }
-
     }
 
     this.initText()
+    
   }
 
   sendOutputData() {

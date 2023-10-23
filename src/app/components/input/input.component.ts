@@ -147,8 +147,6 @@ export class InputComponent {
             this.spinnerOutputService.showLoader();
           
             this.spellCheckerService.getSpellCheckerOutput(query).subscribe(response => {
-              console.log("HERE");
-              
               this.responseGpt = response;
               this.outputContent = this.responseGpt.choices[0].message.content;
           

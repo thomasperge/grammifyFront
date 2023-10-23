@@ -14,6 +14,7 @@ import { EnvironnementService } from 'src/app/services/environnement.service';
 export class LoginComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
+  isLoading: boolean = false;
 
   constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private usersService: UsersService, private usagesService: UsagesService) { }
 
@@ -27,6 +28,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.isLoading = true;
+
     // Get form data
     const formData = {
       email: this.loginForm.value.email,
@@ -45,11 +48,15 @@ export class LoginComponent {
         if (response.status === 200) {
           this.usersService.setUserIdLocalStorage(response.body)
           this.usagesService.setMaxUsages(response.body.user.maxUsages)
+          
+          this.isLoading = false;
           this.router.navigate(['/home']);
         } else {
+          this.isLoading = false;
           this.displayErrorMessage = "*Incorrect email or password"
         }
       }, error => {
+          this.isLoading = false;
           this.displayErrorMessage = "*Incorrect email or password"
       });
   }

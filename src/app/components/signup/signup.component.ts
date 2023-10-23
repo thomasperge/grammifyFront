@@ -15,6 +15,7 @@ import { EnvironnementService } from 'src/app/services/environnement.service';
 export class SignupComponent {
   envUrl: any;
   displayErrorMessage: String | undefined;
+  isLoading: boolean = false;
 
   constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) { }
   
@@ -23,12 +24,13 @@ export class SignupComponent {
     password: ''
   });
 
-
   redirectToLoginPage() {
     this.router.navigate(['/login']);
   }
 
   onSubmit() {
+    this.isLoading = true;
+
     // Get form data
     const formData = {
       email: this.signupForm.value.email,
@@ -50,12 +52,15 @@ export class SignupComponent {
           this.usagesService.setMaxUsages(response.body.user.maxUsages)
           this.usagesService.setUsages(response.body.user.currentUsages)
           this.usersService.setUserEmail(response.body.user.email)
-          
+
+          this.isLoading = false;
           this.router.navigate(['/home']);
         } else {
+          this.isLoading = false;
           this.displayErrorMessage = "*Email already in use"
         }
       }, error => {
+          this.isLoading = false;
           this.displayErrorMessage = "*Email already in use"
       });
   }

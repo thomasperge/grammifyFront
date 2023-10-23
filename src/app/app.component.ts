@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
     });
 
     // Check screen size
-    this.isSmallScreen = window.innerWidth < 350;
+    this.isSmallScreen = window.innerWidth < 340;
     window.addEventListener('resize', () => {
-      this.isSmallScreen = window.innerWidth < 350;
+      this.isSmallScreen = window.innerWidth < 340;
     });
   }
 
@@ -67,13 +67,15 @@ export class AppComponent implements OnInit {
 
         this.isLoading = false;
       } else {
+        // Set Unknown user
+        this.isLoading = true;
+
         const newUnknownUserId = this.generateUuid();
         localStorage.setItem('unknownId', newUnknownUserId);
-    
-        this.isLoading = true;
+        
         this.unknownUserService.setUnknownUserId(newUnknownUserId);
-    
         await this.unknownUserService.createUnknownUser(newUnknownUserId);
+        
         this.isLoading = false;
       }
     }

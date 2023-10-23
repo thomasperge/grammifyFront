@@ -8,8 +8,8 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { ProfilComponent } from './components/profil/profil.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'translator', pathMatch: 'full' },
-  { path: 'home', redirectTo: 'translator', pathMatch: 'full' },
+  { path: '', redirectTo: 'rewriter', pathMatch: 'full' },
+  { path: 'home', redirectTo: 'rewriter', pathMatch: 'full' },
   { path: 'translator', component: OfficeComponent },
   { path: 'rewriter', component: OfficeComponent },
   { path: 'spell-checker', component: OfficeComponent },

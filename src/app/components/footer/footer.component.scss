@@ -8,7 +8,7 @@
   border-top: rgb(200, 200, 255) 2.2px solid;
   border-bottom: rgb(200, 200, 255) 2.2px solid;
   margin: 1.2rem 0 0 0;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 2rem 2rem;
   background-color: #edecfd;
 }
 
@@ -76,4 +76,9 @@
 .pseudoTitle {
   text-decoration: underline;
   color: blue;
+}
+
+.contact {
+  font-size: 1rem;
+  margin: 1rem 0 0 0;
 }

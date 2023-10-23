@@ -20,13 +20,21 @@ export class SignupComponent {
 
   constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) {
     this.signupForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, this.emailFormatValidator]],
       password: ['', Validators.required],
     });
   }
 
   redirectToLoginPage() {
     this.router.navigate(['/login']);
+  }
+
+  emailFormatValidator(control: any) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailPattern.test(control.value)) {
+      return { invalidEmailFormat: true };
+    }
+    return null;
   }
 
   onSubmit() {
@@ -43,7 +51,7 @@ export class SignupComponent {
       'Content-Type': 'application/json'
     });
 
-    if (this.signupForm.get('email')!.invalid) {
+    if (this.signupForm.get('email')!.hasError('invalidEmailFormat')) {
       this.displayErrorMessage = "Please enter a valid email address.";
       this.isLoading = false;
       return;

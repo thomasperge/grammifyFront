@@ -11,13 +11,11 @@ export class TextareaOutputService {
   constructor() { }
 
   setOutPutData(data: string) {
-    console.log("=== OUTPUT SERVICE : SET OUTPUT TEXT ===");
     this.outputData = data;
     this.outputDataSubject.next(data);
   }
 
   getOutputData() {
-    console.log("=== OUTPUT SERVICE : GET OUTPUT TEXT ===");
     return this.outputData;
   }
 }

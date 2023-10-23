@@ -48,6 +48,7 @@ export class LoginComponent {
         if (response.status === 200) {
           this.usersService.setUserIdLocalStorage(response.body)
           this.usagesService.setMaxUsages(response.body.user.maxUsages)
+          this.usersService.setUserEmail(response.body.user.email)
           
           this.isLoading = false;
           this.router.navigate(['/home']);

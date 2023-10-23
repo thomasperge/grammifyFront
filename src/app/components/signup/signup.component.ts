@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UnknownUserService } from 'src/app/services/unknown-user.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -13,16 +13,17 @@ import { EnvironnementService } from 'src/app/services/environnement.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  signupForm: FormGroup;
   envUrl: any;
   displayErrorMessage: String | undefined;
   isLoading: boolean = false;
 
-  constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) { }
-  
-  signupForm = this.formBuilder.group({
-    email: '',
-    password: ''
-  });
+  constructor(private environnementService: EnvironnementService, private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private unknownUserService: UnknownUserService, private usersService: UsersService, private usagesService: UsagesService) {
+    this.signupForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
 
   redirectToLoginPage() {
     this.router.navigate(['/login']);
@@ -41,6 +42,18 @@ export class SignupComponent {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+
+    if (this.signupForm.get('email')!.invalid) {
+      this.displayErrorMessage = "Please enter a valid email address.";
+      this.isLoading = false;
+      return;
+    }
+
+    if (this.signupForm.value.password!.length < 8) {
+      this.displayErrorMessage = "Password must be at least 8 characters long"
+      this.isLoading = false
+      return
+    }
 
     const uri = this.environnementService.getUrlBackend() + "/users/signup"
     

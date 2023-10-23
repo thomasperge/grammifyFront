@@ -9,20 +9,32 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class NavbarComponent {
   activePageClass: any = 'gray';
-  login: String | undefined = "Get Started";
+  signup: String | undefined = "Get Started";
+  login: String | undefined = "";
+  isNavbarOpen = false;
 
   constructor(private router: Router, private usersService: UsersService) {
     this.usersService.email$.subscribe(email => {
       if(email) {
-        this.login = "👤 Profile";
+        this.signup = "👤 Profile";
       } else {
-        this.login = "🚀 Get Started"
+        this.login = "Login"
+        this.signup = "🚀 Get Started"
       }
     });
   }
 
   isHomePage() {
     return this.router.url.startsWith('/translator') || this.router.url.startsWith('/rewriter') || this.router.url.startsWith('/spell-checker')
+  }
+
+  toggleNavbar() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+    if (this.isNavbarOpen) {
+      document.getElementById('navbar-cta')?.classList.remove('hidden')
+    } else {
+      document.getElementById('navbar-cta')?.classList.add('hidden')
+    }
   }
 
   isAboutPage() {
@@ -52,6 +64,14 @@ export class NavbarComponent {
   redirectToLoginPage() {
     if (!this.usersService.getUserId()) {
       this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/profil']);
+    }
+  }
+
+  redirectToSignupPage() {
+    if (!this.usersService.getUserId()) {
+      this.router.navigate(['/signup']);
     } else {
       this.router.navigate(['/profil']);
     }

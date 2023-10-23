@@ -13,7 +13,7 @@ import { UsagesService } from './services/usages.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'GrammifyFront';
+  title = 'SpelliyFront';
   isDisplayNavBar = true;
   isSmallScreen: boolean = false;
   isLoading: boolean = true;

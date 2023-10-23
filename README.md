@@ -1,4 +1,4 @@
-# GrammifyFront
+# SpelliyFrontw
 
 # A faire :
 
@@ -26,10 +26,13 @@
 
 // grammity.com
 // grammulate.com
-// grammscribe.com |
+// grammscribe.com
 // grammila.com
 // grammito.com
 // grammiti.com
+
+// spellioz.com
+// spelliy.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 By Thomasperge (https://github.com/thomasperge)

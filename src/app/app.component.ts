@@ -82,14 +82,14 @@ export class AppComponent implements OnInit {
   }
 
   // Set id local storage if user edit the id in localStorage
-  // @HostListener('window:beforeunload', ['$event'])
-  // onBeforeUnload(event: BeforeUnloadEvent): void {
-  //   if (localStorage.getItem('userId') != this.usersService.getUserId()) {
-  //     localStorage.setItem('userId', this.usersService.getUserId());
-  //   }
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload(event: BeforeUnloadEvent): void {
+    if (localStorage.getItem('userId') != this.usersService.getUserId()) {
+      localStorage.setItem('userId', this.usersService.getUserId());
+    }
 
-  //   if (localStorage.getItem('unknownId') != this.unknownUserService.getUnknownUserId()) {
-  //     localStorage.setItem('unknownId', this.unknownUserService.getUnknownUserId());
-  //   }
-  // }  
+    if (localStorage.getItem('unknownId') != this.unknownUserService.getUnknownUserId()) {
+      localStorage.setItem('unknownId', this.unknownUserService.getUnknownUserId());
+    }
+  }
 }

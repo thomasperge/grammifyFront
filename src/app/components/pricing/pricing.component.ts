@@ -11,15 +11,19 @@ export class PricingComponent {
   userId = "";
   isConnected: boolean = this.usersService.getUserId();
   url: any;
+  loadingButton: number | null = null;
 
   constructor(private billingPortalService: BillingPortalService, private usersService: UsersService) { }
 
-  choosePlan() {
-    this.userId = this.usersService.getUserId()
-
+  choosePlan(buttonNumber: number) {
+    this.loadingButton = buttonNumber;
+    this.userId = this.usersService.getUserId();
+  
     this.billingPortalService.getSessionUrl(this.userId).subscribe(response => {
-      this.url = response
-      window.open(this.url.url,'_blank');
+      this.url = response;
+      this.loadingButton = null;
+  
+      window.open(this.url.url, '_blank');
     });
   }
 }

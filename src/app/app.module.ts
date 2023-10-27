@@ -23,6 +23,7 @@ import { ClipboardComponent } from './components/clipboard/clipboard.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { MobileComponent } from './components/mobile/mobile.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { KeywordsComponent } from './components/keywords/keywords.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CreateAccountComponent } from './components/create-account/create-accou
     ProfilComponent,
     MobileComponent,
     CreateAccountComponent,
+    KeywordsComponent,
   ],
   imports: [
     BrowserModule,

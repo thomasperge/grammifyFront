@@ -5,7 +5,7 @@ import { initFlowbite } from 'flowbite';
 import { v4 as uuidv4 } from 'uuid';
 import { UnknownUserService } from './services/unknown-user.service';
 import { UsersService } from './services/users.service';
-import { UsagesService } from './services/usages.service';
+import { RouteActiveService } from './services/route-active.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   isSmallScreen: boolean = false;
   isLoading: boolean = true;
 
-  constructor(private router: Router, private unknownUserService: UnknownUserService, private usagesService: UsagesService, private usersService: UsersService) {
+  constructor(private router: Router, private unknownUserService: UnknownUserService, private usersService: UsersService, private activedRouteService: RouteActiveService) {
     // Check all route changes
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -36,6 +36,18 @@ export class AppComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.isSmallScreen = window.innerWidth < 340;
     });
+  }
+
+  isTranslateRouteActive(): boolean {
+    return this.activedRouteService.isActiveRoute('/translator');
+  }
+
+  isReformulateRouteActive(): boolean {
+    return this.activedRouteService.isActiveRoute('/rewriter');
+  }
+
+  isSpellCheckerRouteActive(): boolean {
+    return this.activedRouteService.isActiveRoute('/spell-checker');
   }
 
   generateUuid() {

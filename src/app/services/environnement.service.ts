@@ -9,7 +9,7 @@ export class EnvironnementService {
 
   constructor() { }
 
-  getUrlBackend() {
+  getUrlBackend() { 
     if (environmentDev.activedDev) {
       return environmentDev.apiURL;
     } else {

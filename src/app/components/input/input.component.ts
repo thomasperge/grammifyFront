@@ -64,6 +64,11 @@ export class InputComponent {
     this.letterCounter = `${currentLength}/350`;
   }
 
+  reverseInputOutput() {
+    this.textService.setText(this.textareaOutputService.getOutputData())
+    this.textareaOutputService.setOutPutData(this.textForm.value.text!)
+  }
+
   ngOnInit(): void {
     const initialText = this.textService.getText();
     

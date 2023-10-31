@@ -1,7 +1,7 @@
 const environmentDev = {
   production: false,
   apiURL: 'http://localhost:3000',
-  activedDev : false,
+  activedDev: false,
 };
 
-export default environmentDev
+export default environmentDev;

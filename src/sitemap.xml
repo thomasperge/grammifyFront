@@ -1,74 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://www.spelliy.com/</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/home</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=fr</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=en</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=sp</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=de</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=cn</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=sa</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=pt</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=jp</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=it</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=nl</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/translator?lang=kr</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/rewriter</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/spell-checker</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/login</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/signup</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/about</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/pricing</loc>
-</url>
-<url>
-  <loc>https://www.spelliy.com/profil</loc>
-</url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.spelliy.com/</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/home</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=fr</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=en</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=sp</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=de</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=cn</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=sa</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=pt</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=jp</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=it</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=nl</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/translator?lang=kr</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/rewriter</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/spell-checker</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/login</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/signup</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/about</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/pricing</loc>
+  </url>
+  <url>
+    <loc>https://www.spelliy.com/profil</loc>
+  </url>
 </urlset>

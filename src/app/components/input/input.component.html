@@ -21,12 +21,12 @@
         <a *ngIf="isSpellCheckerRouteActive()">Spell Checker</a>
       </button>
 
-      <div class="flex gap-2">  
+      <div class="flex gap-2">
         <!-- Number of caracter per input -->
         <div [ngClass]="{ redLetterCount: letterCount >= 300 }">{{ letterCounter }}</div>
 
         <!-- Reverse -->
-        <div class="flex items-center justify-center" (click)="reverseInputOutput()">
+        <div class="flex items-center justify-center cursor-pointer" (click)="reverseInputOutput()">
           <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

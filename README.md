@@ -9,7 +9,7 @@
 - Ajouter un tools (uniquement pour ce qui ce sont crée un compte) ? (genre un business generator ? (avec un ring orange et border orange pour dire que c'est en beta ?, et obligé de ce crée un compte pour y avoir accès ?))
 - TWEET GENERATOR : (tetarea: saisir le sujet principal du tweet, dropdown : "drôle", "inspirant", "informatif", "controversé", "émotionnel") =>> PROMPT :
 - ==!!!! Mettre Translate en "Get Started" et Spell-Checker en Open pour les unknown user !!!!==
-
+- generatreur article de blog (https://tryjournalist.com/)
 <!-- ProductHunt -->
 
 - Atout (ProductHunt):

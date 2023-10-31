@@ -65,8 +65,15 @@ export class InputComponent {
   }
 
   reverseInputOutput() {
-    this.textService.setText(this.textareaOutputService.getOutputData())
-    this.textareaOutputService.setOutPutData(this.textForm.value.text!)
+    let copyInput = this.textForm.value.text!
+    let copyOutput = this.textareaOutputService.getOutputData()
+
+    // Intput take Output
+    this.textService.setText(copyOutput)
+    this.textForm.get('text')?.setValue(copyOutput);
+
+    // Output take Input
+    this.textareaOutputService.setOutPutData(copyInput)
   }
 
   ngOnInit(): void {
@@ -165,7 +172,6 @@ export class InputComponent {
     }
 
     this.initText()
-    
   }
 
   sendOutputData() {

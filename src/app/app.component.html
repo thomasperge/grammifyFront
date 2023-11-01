@@ -1,6 +1,8 @@
 <div *ngIf="!isSmallScreen && !isLoading">
   <!-- NavBar -->
-  <app-navbar *ngIf="isDisplayNavBar"></app-navbar>
+  <header>
+    <app-navbar *ngIf="isDisplayNavBar"></app-navbar>
+  </header>
 
   <!-- Component -->
   <router-outlet></router-outlet>

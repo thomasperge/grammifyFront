@@ -35,6 +35,10 @@ export class OfficeComponent implements OnInit {
     this.router.navigate(['/spell-checker']);
   }
 
+  redirectToNewTools() {
+    this.router.navigate(['/new-tools'])
+  }
+
   setHighlightButton(idRoute: string) {
     this.activeButton = idRoute;
   }

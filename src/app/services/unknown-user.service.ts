@@ -1,25 +1,25 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { UsagesService } from './usages.service';
-import { Router } from '@angular/router';
-import { EnvironnementService } from 'src/app/services/environnement.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { UsagesService } from './usages.service'
+import { Router } from '@angular/router'
+import { EnvironnementService } from 'src/app/services/environnement.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UnknownUserService {
-  unknownUserid: String = ""
+  unknownUserid: String = ''
   currentUsages: any = 0
   maxUsages: any = 0
 
-  constructor(private http: HttpClient, private usagesService: UsagesService, private router: Router, private environnementService: EnvironnementService) { }
+  constructor(private http: HttpClient, private usagesService: UsagesService, private router: Router, private environnementService: EnvironnementService) {}
 
   setUnknownUserId(newUnknownUserid: any) {
     this.unknownUserid = newUnknownUserid
   }
 
   getUnknownUserId(): any {
-    return this.unknownUserid;
+    return this.unknownUserid
   }
 
   getUnknownUserCurrentUsage() {
@@ -31,73 +31,72 @@ export class UnknownUserService {
   }
 
   async createUnknownUser(idUser: String) {
-    const url = this.environnementService.getUrlBackend() + "/unknown-user/create"
+    const url = this.environnementService.getUrlBackend() + '/unknown-user/create'
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+      'Content-Type': 'application/json',
+    })
 
     const data: any = {
-      id: idUser
+      id: idUser,
     }
 
-    this.http.post<any>(url, data, { headers, observe: 'response' })
-      .subscribe(response => {
-        if (response.status === 200) {
-          this.currentUsages = response.body.user.currentUsages
-          this.maxUsages = response.body.user.maxUsages
+    this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe((response) => {
+      if (response.status === 200) {
+        this.currentUsages = response.body.user.currentUsages
+        this.maxUsages = response.body.user.maxUsages
 
-          this.usagesService.setUsages(response.body.user.currentUsages)
-          this.usagesService.setMaxUsages(response.body.user.maxUsages)
-        }
-      });
+        this.usagesService.setUsages(response.body.user.currentUsages)
+        this.usagesService.setMaxUsages(response.body.user.maxUsages)
+      }
+    })
   }
 
   async getUnknownUserData(idUser: String) {
     return new Promise<number>(async (resolve, reject) => {
-      const url = this.environnementService.getUrlBackend() + "/unknown-user/get-data";
-  
+      const url = this.environnementService.getUrlBackend() + '/unknown-user/get-data'
+
       const headers = new HttpHeaders({
-        'Content-Type': 'application/json'
-      });
-  
+        'Content-Type': 'application/json',
+      })
+
       const data: any = {
-        id: idUser
-      };
-  
+        id: idUser,
+      }
+
       this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe(
-        response => {
+        (response) => {
           if (response.status === 200) {
             this.currentUsages = response.body.user.currentUsages
             this.maxUsages = response.body.user.maxUsages
 
             this.usagesService.setUsages(this.currentUsages)
             this.usagesService.setMaxUsages(this.maxUsages)
-            resolve(response.body.user);
+            resolve(response.body.user)
           } else {
             this.router.navigate(['/login'])
-            resolve(-1);
+            resolve(-1)
           }
         },
-        error => {
+        (error) => {
           this.router.navigate(['/login'])
-          resolve(-1);
+          resolve(-1)
         }
-      );
-    });
+      )
+    })
   }
 
   async addUsageUnknownUser(idUser: string) {
-    const url = this.environnementService.getUrlBackend() + "/unknown-user/add-usage"
+    const url = this.environnementService.getUrlBackend() + '/unknown-user/add-usage'
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+      'Content-Type': 'application/json',
+    })
 
     const data: any = {
-      id: idUser
+      id: idUser,
     }
 
-    this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe();
+    this.http.post<any>(url, data, { headers, observe: 'response' }).subscribe()
   }
 }

@@ -51,6 +51,12 @@ export class InputComponent {
     return this.activedRouteService.isActiveRoute('/spell-checker');
   }
 
+  isNewToolsActive(): boolean {
+    this.initText()
+    this.updateLetterCounter()
+    return this.activedRouteService.isActiveRoute('/new-tools')
+  }
+
   updateLetterCounter() {
     let textValue = this.textForm.value.text;
     const currentLength = textValue ? textValue.length : 0;
@@ -104,7 +110,7 @@ export class InputComponent {
     
     if (unknownUserId) {
       if (!this.checkUsagesLimit()) {
-        this.warningUsages = "*You have reached the usage limit. Please upgrade your account to continue');"
+        this.warningUsages = "*You have reached the usage limit. Please upgrade your account to continue);"
       } else {
         if (this.activedRouteService.isActiveRoute('/translator')) {
           // Translate
@@ -167,7 +173,13 @@ export class InputComponent {
               return
             });
           }
-        }
+        } else if (this.activedRouteService.isActiveRoute('/new-tools')) {
+          console.log('==> NEW TOOLS !');
+          // Set usages
+          this.usagesService.addUsages();
+          userid ? this.usersService.addUserUsages(userid) : this.unknownUserService.addUsageUnknownUser(unknownUserId);
+        
+        } 
       }
     }
 

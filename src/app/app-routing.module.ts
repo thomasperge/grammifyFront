@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'pricing', component: PricingComponent },
   { path: 'profil', component: ProfilComponent },
+  { path: 'new-tools', component: OfficeComponent }
 ];
 
 @NgModule({
